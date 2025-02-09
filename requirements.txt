@@ -2,7 +2,7 @@ asgiref==3.8.1
 Brotli==1.1.0
 cffi==1.17.1
 cssselect2==0.7.0
-Django==5.1.5
+Django==4.2.19
 django-browser-reload==1.17.0
 fonttools==4.55.6
 pillow==11.1.0
