@@ -1,32 +1,33 @@
-name: Deploy to AWS Elastic Beanstalk
+name: Deploy to Elastic Beanstalk
 
 on:
   push:
     branches:
-      - main  # 本番環境用ブランチ
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install AWS CLI
-        run: |
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
-          aws --version
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-      - name: Deploy to AWS Elastic Beanstalk
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Deploy to Elastic Beanstalk
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: "ap-northeast-1"
-          APPLICATION_NAME: "skw-django"  # AWS Elastic Beanstalk で設定したアプリケーション名
-          ENVIRONMENT_NAME: "production-env"  # 本番環境
+          AWS_REGION: "ap-northeast-1"  # リージョンをここで指定
         run: |
-          zip -r deploy.zip . -x "*.git*"
-          aws elasticbeanstalk create-application-version --application-name $APPLICATION_NAME --version-label $GITHUB_SHA --source-bundle S3Bucket="elasticbeanstalk-ap-northeast-1-XXXXXXXXXX",S3Key="deploy.zip"
-          aws elasticbeanstalk update-environment --application-name $APPLICATION_NAME --environment-name $ENVIRONMENT_NAME --version-label $GITHUB_SHA
+          eb init -p python-3.9 SKW-env --region ap-northeast-1
+          eb deploy
