@@ -10,24 +10,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # リポジトリのコードをチェックアウト
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Python 3.9 のセットアップ
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
+      # 必要なパッケージのインストール
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
+      # AWS CLIとElastic Beanstalk CLIのインストール
       - name: Install AWS CLI and Elastic Beanstalk CLI
         run: |
           sudo apt-get update
           sudo apt-get install -y zip unzip
           pip install awsebcli
 
+      # AWS認証情報を確認（デバッグ用）
+      - name: Debug AWS credentials
+        run: |
+          echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
+          echo "AWS_SECRET_ACCESS_KEY: [MASKED]"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      # Elastic Beanstalkへのデプロイ
       - name: Deploy to Elastic Beanstalk
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
