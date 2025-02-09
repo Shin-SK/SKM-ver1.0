@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block content %}
+
+<div class="docspdf__confirm">
+  <div class="mainTitle">確認画面</div>
+  <div class="subTitle">以下の内容で確定しますか？</div>
+
+  <div class="button">
+    <a href="{% url 'edit_quotation' quotation.pk %}" class="">修正</a>
+    <a href="{% url 'quotation_list' %}" class="">確定</a>
+  </div>
+
+  <div class="preview">
+    {% include "docspdf/quotation_pdf_content.html" %}
+  </div>
+
+</div>
+
+{% endblock %}
+

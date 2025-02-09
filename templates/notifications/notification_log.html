@@ -1,0 +1,25 @@
+<h1>通知ログ</h1>
+<table>
+    <thead>
+        <tr>
+            <th>タイトル</th>
+            <th>通知タイプ</th>
+            <th>送信日時</th>
+            <th>対象部署</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for notification in notifications %}
+            <tr>
+                <td>{{ notification.title }}</td>
+                <td>{{ notification.notification_type }}</td>
+                <td>{{ notification.created_at }}</td>
+                <td>{{ notification.department.name if notification.department else "全体" }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">まだ通知はありません。</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

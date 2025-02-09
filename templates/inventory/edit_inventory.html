@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ form.instance.pk|yesno:"在庫編集,新しい在庫を追加" }}{% endblock %}
+
+{% block content %}
+<div class="edit_inventory edit">
+    <div class="mainTitle">在庫変更</div>
+    <form class="form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form__wrap">
+            {% for field in form %}
+            <div class="box">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit">変更を保存</button>
+    </form>
+    <a href="{% url 'inventory:inventory_list' %}">戻る</a>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}勤怠履歴{% endblock %}
+
+{% block content %}
+<div class="attendance list">
+    <div class="mainTitle">勤怠履歴</div>
+    
+    <div class="attendance__grid">
+        <!-- ヘッダー -->
+        <div class="area head">
+            <div class="cell">出勤日</div>
+            <div class="cell">時刻</div>
+            <div class="cell">退勤時刻</div>
+        </div>
+
+        <!-- レコードをループで表示 -->
+        {% for record in records %}
+        <div class="area value">
+            <div class="cell">{{ record.clock_in|date:"Y/m/d" }}</div>
+            <div class="cell">{{ record.clock_in|date:"H:i" }}</div>
+            <div class="cell">{{ record.clock_out|default:'未退勤' }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div><!-- attendance -->
+{% endblock %}

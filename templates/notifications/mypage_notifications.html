@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>最新の通知</h1>
+    <div class="wrap">
+        {% for notification in notifications %}
+        <div class="area">
+            <div class="box">
+                <div class="dateArea">
+                    <div class="date">{{ notification.created_at|date:"Y/m/d" }}</div>
+                    <div class="time">{{ notification.created_at|date:"H:i" }}</div>
+                </div>
+                <div class="head">
+                    <a href="{% url 'notifications:notification_detail' notification.id %}">{{ notification.title }}</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>通知はありません。</p>
+        {% endfor %}
+    </div>
+    <a class="link" href="{% url 'notifications:allpost' %}">すべての通知を見る</a>
+</div>

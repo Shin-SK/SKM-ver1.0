@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}インポート内容の確認{% endblock %}
+
+{% block content %}
+<h1>インポート内容の確認</h1>
+<form method="post">
+    {% csrf_token %}
+    <table>
+        <thead>
+            <tr>
+                <th>名前（姓）</th>
+                <th>名前（名）</th>
+                <th>メールアドレス</th>
+                <th>電話番号</th>
+                <th>会社名</th>
+                <th>住所</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in preview_data %}
+            <tr>
+                <td>{{ row.first_name }}</td>
+                <td>{{ row.last_name }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.phone_number }}</td>
+                <td>{{ row.company_name }}</td>
+                <td>{{ row.address }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit">インポートを実行</button>
+</form>
+<a href="{% url 'import_customers_csv' %}">戻る</a>
+{% endblock %}

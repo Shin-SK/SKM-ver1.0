@@ -1,0 +1,135 @@
+@use "../global/global";
+
+
+/* -----------------------------------
+   🌍 フォーム要素のリセットCSS
+   - 2025年最新版
+   - ブラウザ間のスタイル差異をなくし、統一感を持たせる
+   - モバイル最適化も考慮
+----------------------------------- */
+
+/* 全てのフォーム要素をリセット */
+button, input, optgroup, select, textarea {
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.5;
+    color: inherit;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    appearance: none; /* モバイルブラウザのデフォルトUI削除 */
+}
+
+/* input, select, textarea に統一感を持たせる */
+input, select, textarea {
+    width: 100%;
+    display: block;
+    border: unset;
+    border-radius: 4px;
+    padding: 8px 10px;
+    background-color: #fff;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* フォーカス時のハイライト */
+input:focus, select:focus, textarea:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 4px rgba($mc,0.4);
+}
+
+/* select のスタイル統一 */
+select {
+    cursor: pointer;
+    background-color: #fff;
+}
+
+/* テキストエリアの高さ調整 */
+textarea {
+    min-height: 120px;
+    resize: vertical; /* 縦方向のリサイズのみ許可 */
+}
+
+/* ボタンのデフォルトスタイル削除 */
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* フォームボタンのデザイン統一 */
+button, input[type="submit"], input[type="reset"], input[type="button"] {
+    display: inline-block;
+    padding: 4px 16px;
+    @include fs(14);
+    border-radius: 4px;
+    background-color: $mc;
+    color: #fff;
+    text-align: center;
+    transition: background 0.2s;
+    width: 100%;
+}
+
+button{
+    border-radius: 100px;
+    padding: 8px;
+    a{
+        color: white;
+    }
+}
+
+.button{
+    @include flex();
+    gap: 40px;
+    a{
+        border-radius: 100px;
+        display: inline-block;
+        padding: 4px 16px;
+        @include fs(14);
+        background-color: $mc;
+        color: #fff;
+        text-align: center;
+        transition: background 0.2s;
+        width: 100%;
+    }
+}
+
+button:hover, input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover {
+    background-color: darken($mc, 10%);
+}
+
+/* チェックボックス・ラジオボタンのリセット */
+input[type="checkbox"], input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+    cursor: pointer;
+    appearance: none;
+    border: 2px solid $mc;
+    border-radius: 4px;
+    position: relative;
+}
+
+input[type="checkbox"]:checked, input[type="radio"]:checked {
+    background-color: $mc;
+    border-color: darken($mc, 10%);
+}
+
+/* デフォルトのプレースホルダーのスタイル */
+::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+/* ディスエーブル時のスタイル */
+input:disabled, textarea:disabled, button:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+

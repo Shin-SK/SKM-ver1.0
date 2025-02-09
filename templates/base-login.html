@@ -1,0 +1,31 @@
+{% load django_browser_reload %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django Project{% endblock %}</title>
+    {% include 'common/parts/head.html' %}
+</head>
+
+<body>
+
+        <main class="main-unset">
+            
+            {% block content %}
+            {% endblock %}
+            
+        </main>
+
+        <footer class="footer">
+            <div class="cr"><a href="{% url 'index' %}">&copy; 2025 SKW</a></div>
+        </footer>
+
+    </div><!-- contents-wrapper -->
+
+    {% include 'common/parts/foot.html' %}
+    {% django_browser_reload_script %}
+</body>
+</html>

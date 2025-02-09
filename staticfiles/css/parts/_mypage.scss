@@ -1,0 +1,66 @@
+@use "../global/global";
+
+.mypage{
+    .attendance{
+        margin-top: 40px;
+        &__wrap{
+            @include flex();
+            gap: 40px;
+            form{
+                flex:1;
+                button{
+                    font-weight: bold;
+                    border-radius: 16px;
+                }
+            }
+        }
+        .today{
+            margin-top: 40px;
+            .title{
+                font-weight: bold;
+                @include fs(20);
+            }
+            &__wrap{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                .box{
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    gap: 24px;
+                    align-items: center;
+                    background-color: white;
+                    padding: 40px;
+                    border-radius: 16px;
+                    .head{
+                        font-weight: bold;
+                        i{
+                            margin-right: 4px;
+                        }
+                    }
+                }
+            }
+            .noRecord {
+                opacity: 0;               // 最初は透明
+                transform: translateY(4px); // 20px下にずらす
+                animation: fadeUp 0.6s ease-out forwards;
+                animation-delay: 1s;
+                .text{
+                    font-weight: bold;
+                    text-align: center;
+                }
+            }
+            
+            @keyframes fadeUp {
+                0% {
+                    opacity: 0;
+                    transform: translateY(4px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }//today
+    }//attendance
+}

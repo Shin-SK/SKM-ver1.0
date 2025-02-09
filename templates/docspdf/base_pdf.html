@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>{% block title %}PDF{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    {% block content %}{% endblock %}
+
+  <footer>
+    <div class="footer">{% block footer %}共通PDFフッター{% endblock %}</div>
+  </footer>
+</body>
+</html>

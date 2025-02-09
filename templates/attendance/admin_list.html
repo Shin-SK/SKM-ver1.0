@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}管理者用勤怠リスト{% endblock %}
+
+{% block content %}
+<form method="get">
+    <label for="name">名前:</label>
+    <select name="name" id="name">
+        <option value="">すべて</option>
+        {% for user in users %}
+        <option value="{{ user.username }}" {% if name == user.username %}selected{% endif %}>{{ user.username }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="month">月:</label>
+    <select name="month" id="month">
+        <option value="">すべて</option>
+        {% for m in months %}
+        <option value="{{ m }}" {% if month|default:'' == m|stringformat:"d" %}selected{% endif %}>{{ m }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="year">年:</label>
+    <input type="number" name="year" id="year" value="{{ year|default:now.year }}">
+
+    <button type="submit">フィルタ</button>
+</form>
+
+<h1>管理者用勤怠リスト</h1>
+<a href="{% url 'export_attendance_csv' %}">CSVをダウンロード</a>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ユーザー名</th>
+            <th>日付</th>
+            <th>出勤時間</th>
+            <th>退勤時間</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <tr>
+            <td>{{ record.user.username }}</td>
+            <td>{{ record.date }}</td>
+            <td>{{ record.clock_in|date:"Y-m-d H:i:s" }}</td>
+            <td>{{ record.clock_out|date:"Y-m-d H:i:s" }}</td>
+            <td><a href="{% url 'edit_attendance' record.id %}">編集</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">勤怠記録がありません。</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

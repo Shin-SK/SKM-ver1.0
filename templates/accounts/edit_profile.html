@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}プロフィール変更{% endblock %}
+
+{% block content %}
+<div class="edit_profile edit">
+
+    <div class="mainTitle">プロフィール変更</div>
+    <form class="form" method="post">
+        {% csrf_token %}
+        <div class="form__wrap">
+            <div class="box">
+                <label for="id_first_name">姓</label>
+                {{ form.first_name }}
+            </div>
+            <div class="box">
+                <label for="id_last_name">名</label>
+                {{ form.last_name }}
+            </div>
+            <div class="box">
+                <label for="id_username">ログインID</label>
+                {{ form.username }}
+            </div>
+            <div class="box">
+                <label for="id_email">メールアドレス</label>
+                {{ form.email }}
+            </div>
+            <div class="box">
+                <label for="id_department">部署</label>
+                <input type="text" name="department" id="id_department" value="{{ request.user.profile.department }}">
+            </div>
+            <div class="box">
+                <label for="id_phone_number">電話番号</label>
+                <input type="text" name="phone_number" id="id_phone_number" value="{{ request.user.profile.phone_number }}">
+            </div>
+        </div>
+        <button type="submit">変更を保存</button>
+    </form>
+    <a href="{% url 'mypage' %}">戻る</a>
+
+</div>
+{% endblock %}

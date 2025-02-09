@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block content %}
+<div class="invoice list">
+    <div class="mainTitle">請求書一覧</div>
+
+    <div class="create">
+        <a href="{% url 'create_invoice' %}"><i class="fas fa-plus"></i>請求書を作成</a>
+    </div>
+
+    <div class="list__grid">
+        <!-- ヘッダー -->
+        <div class="area head">
+            <div class="cell">請求書番号</div>
+            <div class="cell">顧客</div>
+            <div class="cell">作成者</div>
+            <div class="cell">作成日</div>
+            <div class="cell">詳細</div>
+            <div class="cell">PDF</div>
+        </div>
+
+        <!-- レコードをループで表示 -->
+        {% for invoice in invoices %}
+        <div class="area value">
+            <div class="cell">{{ invoice.invoice_number }}</div>
+            <div class="cell">{{ invoice.customer }}</div>
+            <div class="cell">{{ invoice.creator }}</div>
+            <div class="cell">{{ invoice.created_at|date:"Y/m/d" }}</div>
+            <div class="cell">
+                <a href="{% url 'invoice_confirm' invoice.pk %}" target="_blank">詳細</a>
+            </div>
+            <div class="cell">
+                <a href="{% url 'invoice_pdf' invoice.pk %}" class="dl"><i class="fas fa-file-download"></i>PDF</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

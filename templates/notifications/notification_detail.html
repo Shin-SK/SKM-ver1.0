@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="notification detail container">
+    <!-- パンくず -->
+    {% include 'notifications/notifaction_bread.html' with current_page="detail" %}
+
+
+    <div class="title">{{ notification.title }}</div>
+    <div class="date"><i class="far fa-clock"></i>{{ notification.created_at|date:"Y/m/d H:i" }}</div>
+    <div class="body">
+        <p>{{ notification.body }}</p>
+    </div>
+    <button>
+        <a href="{% url 'index' %}">マイページへ戻る</a>
+    </button>
+</section>
+{% endblock %}

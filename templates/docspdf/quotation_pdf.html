@@ -1,0 +1,7 @@
+{% extends "docspdf/base_pdf.html" %}
+{% load humanize %}
+
+{% block title %}見積書{% endblock %}
+{% block content %}
+  {% include "docspdf/quotation_pdf_content.html" %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="notification container">
+    {% include 'notifications/notifaction_bread.html' with current_page="list" %}
+    <h1>社内通知一覧</h1>
+    <div class="wrap">
+        {% for notification in notifications %}
+        <div class="area">
+            <div class="box">
+                <div class="dateArea">
+                    <div class="date">{{ notification.created_at|date:"Y/m/d" }}</div>
+                    <div class="time">{{ notification.created_at|date:"H:i" }}</div>
+                </div>
+                <div class="head">
+                    <a href="{% url 'notifications:notification_detail' notification.id %}">{{ notification.title }}</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>通知はありません。</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

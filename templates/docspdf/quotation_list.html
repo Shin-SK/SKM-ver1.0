@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block content %}
+  <h1>見積書一覧</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>番号</th>
+        <th>顧客</th>
+        <th>作成者</th>
+        <th>作成日</th>
+        <th>合計金額</th>
+        <th>ダウンロード</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for quotation in quotations %}
+        <tr>
+          <td>{{ quotation.quotation_number }}</td>
+          <td>{{ quotation.customer }}</td>
+          <td>{{ quotation.creator }}</td>
+          <td>{{ quotation.created_at }}</td>
+          <td><p style="text-align: right;"><strong>合計金額:</strong> ¥{{ total_amount }}</p></td>
+          <td><a href="{% url 'quotation_pdf' quotation.pk %}" target="_blank">PDFダウンロード</a></td>
+          
+        </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

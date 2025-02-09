@@ -1,0 +1,8 @@
+<div class="bread">
+    <a href="{% url 'index' %}">TOP</a>
+    {% if current_page == "list" %}
+        / <span>社内通知一覧</span>
+    {% elif current_page == "detail" %}
+        / <a href="{% url 'notifications:allpost' %}">社内通知一覧</a> / <span>{{ notification.title }}</span>
+    {% endif %}
+</div>

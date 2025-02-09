@@ -1,0 +1,56 @@
+
+{% extends "base.html" %}
+
+{% block title %}マイページ{% endblock %}
+
+{% block content %}
+<div class="mypage">
+
+    <div class="mainTitle">Mypage</div>
+
+    <section class="attendance">
+        <div class="attendance__wrap">
+            <form action="{% url 'clock_in' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">出勤</button>
+            </form>
+            <form action="{% url 'clock_out' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">退勤</button>
+            </form>
+        </div>
+        <div class="today">
+            {% if record %}
+            <div class="today__wrap">
+                <div class="box">
+                    <div class="head">
+                        <i class="far fa-clock"></i>出勤時刻
+                    </div>
+                    <div class="text">
+                        {{ record.clock_in|date:"Y-m-d H:i:s" }}
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="head">
+                        <i class="far fa-clock"></i>退勤時刻
+                    </div>
+                    <div class="text">
+                        {{ record.clock_out|date:"Y-m-d H:i:s" }}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="noRecord">
+                <div class="text">今日の勤怠記録はありません。</div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="notification">
+        <div class="boxArea">
+        {% include 'notifications/mypage_notifications.html' %}
+        </div>
+    </section>
+</div>
+{% endblock %}

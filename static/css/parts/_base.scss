@@ -1,0 +1,162 @@
+@use "../global/global";
+
+$headerHight:50px;
+
+body{
+    @include fs(12);
+}
+
+a{
+    text-decoration: unset;
+}
+
+.header{
+    position: fixed;
+    background-color: white;
+    height: $headerHight;
+    width: 100%;
+    padding: 8px;
+    @include flex();
+    z-index: 999;
+    &__wrap{
+        @include flex();
+        justify-content: space-between;
+        width: 100%;
+        .logo{
+            img{
+                height: 30px;
+            }
+        }
+        .text{
+            @include gotham;
+            @include fs(16);
+        }
+        .logout{
+            @include fs(12);
+            @include gotham;
+            i{
+                margin-right: 4px;
+            }
+        }
+    }
+
+}
+
+.contents-wrapper{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    padding-top: $headerHight;
+    min-height: 100vh;
+    position: relative;
+}
+
+main{
+    background-color: $lmc;
+    border-top-left-radius: 40px;
+    padding: 24px 40px;
+    &.main-unset{
+        border-top-left-radius: unset;
+        padding: unset;
+    }
+}
+
+aside{
+    padding: 40px 16px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .menu{
+        li{
+            font-weight: bold;
+            margin-bottom: 24px;
+            i{
+                width: 24px;
+            }
+        }
+    }
+    .profile{
+        @include fs(14);
+        .name{
+            font-weight: bold;
+            span{
+                @include fs(10);
+                font-weight: normal;
+            }
+        }
+        .hello{
+            @include fs(10);
+        }
+        .wrap{
+            @include flex();
+            @include fs(10);
+            gap: 8px;
+            justify-content: flex-start;
+        }
+
+    }
+}
+
+
+.footer{
+    position: absolute;
+    @include fs(10);
+    bottom: 8px;
+    right: 8px;
+    .cr{
+        margin: 0 auto;
+        text-align: center;
+        opacity: 0.5;
+    }
+}
+
+
+h1{
+    @include gotham;
+    @include fs(20);
+    margin: auto;
+    text-align: center;
+}
+
+
+.bread{
+    @include fs(10);
+     a{
+        span{
+            @include fs(10);
+        }
+     }
+}
+
+
+.mainTitle{
+    @include fs(20);
+    font-weight: bold;
+    text-align: center;
+    margin: auto;
+    @include gotham;
+}
+
+
+.list-menu{
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 40px;
+    &.three{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .box{
+        display: contents;
+        a{
+            background-color: white;
+            padding: 16px;
+            @include flex();
+            i{
+                margin-right: 4px;
+            }
+        }
+    }
+}
+
+

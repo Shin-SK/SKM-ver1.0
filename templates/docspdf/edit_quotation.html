@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>見積書の修正</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <h2>見積項目</h2>
+    {{ formset.management_form }}
+    <table>
+      <thead>
+        <tr>
+          <th>品名</th>
+          <th>数量</th>
+          <th>単価</th>
+          <th>削除</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for form in formset %}
+          <tr>
+            <td>{{ form.item_name }}</td>
+            <td>{{ form.quantity }}</td>
+            <td>{{ form.unit_price }}</td>
+            <td>{{ form.DELETE }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">保存</button>
+  </form>
+{% endblock %}

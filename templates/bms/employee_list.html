@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}社員リスト{% endblock %}
+
+{% block content %}
+<h1>社員リスト</h1>
+<form method="get">
+    <label for="name">名前で検索:</label>
+    <input type="text" name="name" id="name" value="{{ search_name }}">
+
+    <label for="department">部署で検索:</label>
+    <input type="text" name="department" id="department" value="{{ search_department }}">
+
+    <label for="employee_number">社員番号で検索:</label>
+    <input type="text" name="employee_number" id="employee_number" value="{{ search_employee_number }}">
+
+    <button type="submit">検索</button>
+</form>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>社員番号</th>
+            <th>名</th>
+            <th>姓</th>
+            <th>部署</th>
+            <th>メールアドレス</th>
+            <th>電話番号</th>
+            <th>操作</th>
+            <th>削除</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.employee_number }}</td>
+            <td>{{ employee.first_name|default:"未設定" }}</td>
+            <td>{{ employee.last_name|default:"未設定" }}</td>
+            <td>{{ employee.department|default:"未設定" }}</td>
+            <td>{{ employee.email|default:"未設定" }}</td>
+            <td>{{ employee.phone_number|default:"未設定" }}</td>
+            <td><a href="{% url 'edit_employee' employee.id %}">編集</a></td>
+            <td><a href="{% url 'delete_employee' employee.id %}" onclick="return confirm('本当に削除しますか？');">削除</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'export_employees_csv' %}?name={{ search_name }}&department={{ search_department }}">CSVをダウンロード</a>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <p>{{ body }}</p>
+    <p>通知タイプ: {{ notification_type }}</p>
+    {% if department %}
+        <p>部署: {{ department }}</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}在庫リスト{% endblock %}
+
+{% load static %}
+{% block content %}
+<div class="inventory list">
+
+    <div class="mainTitle">在庫リスト</div>
+
+    <form class="search" method="get" action="{% url 'inventory:inventory_list' %}">
+        <div class="wrap">
+            <input type="text" name="q" placeholder="商品名で検索" value="{{ query }}">
+            <input type="text" name="product_code" placeholder="商品コードで検索" value="{{ product_code_query }}">
+        </div>
+        <button type="submit">検索</button>
+        {% if query or product_code_query %}
+        <a class="allpost" href="{% url 'inventory:inventory_list' %}">すべて表示</a>
+        {% endif %}
+    </form>
+
+    <div class="inventory__menu list-menu">
+        {% if user.is_staff %}
+        <div class="box">
+            <a href="{% url 'inventory:inventory_logs' %}"><i class="fas fa-stream"></i>変更履歴を見る</a>
+            <a href="{% url 'inventory:import_inventory_csv' %}"><i class="fas fa-file-import"></i>在庫データをCSVからインポート</a>
+        </div>
+        {% endif %}
+        <div class="box">
+            <a href="{% url 'inventory:edit_inventory' %}"><i class="fas fa-plus"></i>新しい在庫を追加</a>
+            <a href="{% url 'inventory:export_inventory_csv' %}"><i class="fas fa-file-download"></i>CSVダウンロード</a>
+        </div>
+    </div>
+
+    <div class="inventory__grid">
+        {% for item in items %}
+        <div class="area">
+            <div class="image">
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.product_name }}">
+                {% else %}
+                    <img src="{% static 'image/noimage.png' %}" alt="">
+                {% endif %}
+                <div class="adminUser">
+                    <a href="{% url 'inventory:edit_inventory' item.id %}">編集</a>
+                    <a href="{% url 'inventory:delete_inventory' item.id %}" onclick="return confirm('本当に削除しますか？');">削除</a>
+                </div>
+            </div>
+            <div class="text">
+                <div class="head">ID</div>
+                <div class="cell">{{ item.id }}</div>
+                <div class="head">商品名</div>
+                <div class="cell">{{ item.product_name }}</div>
+                <div class="head">在庫数</div>
+                <div class="cell">{{ item.stock_count }}</div>
+                <div class="head">商品コード</div>
+                <div class="cell">{{ item.product_code }}</div>
+                <div class="head">備考</div>
+                <div class="cell textarea">{{ item.notes }}</div>
+            </div>
+        </div><!-- area -->
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

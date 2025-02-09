@@ -1,0 +1,131 @@
+{% load humanize %}
+
+<div class="docspdf printPDF">
+
+<div class="mainTitle">お見積書</div>
+
+<div class="contents-wrap">
+
+    <div class="block1">
+        <div class="left"><!-- 左 -->
+            <div class="box box1">
+                <div class="name grid bbb">
+                    <div class="head">{{ quotation.customer }}</div>
+                    <div class="text">御中</div>
+                </div>
+                <div class="adress">{{ quotation.customer.address }}</div>
+            </div>
+            <div class="box box2">
+                <div class="grid">
+                    <div class="label">案件名</div>
+                    <div class="text">{{ quotation.project_name }}</div>
+                </div>
+                <p>下記の通りお見積り致しました。ご精査下さいますよう、宜しくお願い申し上げます。</p>
+            </div>
+            <div class="box box3">
+                <div class="grid bbb">
+                    <div class="label head">合計金額</div>
+                    <div class="text amount head">¥{{ total_amount|intcomma }}</div>
+                </div>
+            </div>
+            <div class="box box4">
+                <div class="grid">
+                    <div class="label">納期</div>
+                    <div class="text">{{ quotation.closing_date }}</div> <!-- 納期 -->
+                    <div class="label">締め日</div>
+                    <div class="text">{{ quotation.closing_date }}</div> <!-- 締め日 -->
+                    <div class="label">請求日</div>
+                    <div class="text">{{ quotation.payment_due_date }}</div> <!-- 請求日 -->
+                </div>
+            </div>
+        </div>
+        <div class="right"><!-- 右 -->
+            <div class="box box1">
+                <div class="grid">
+                    <div class="label">発行日</div>
+                    <div class="text">{{ quotation.created_at|date:"Y年m月d日" }}</div> <!-- 発行日 -->
+                    <div class="label">見積番号</div>
+                    <div class="text">{{ quotation.quotation_number }}</div> <!-- 見積番号 -->
+                </div>
+            </div>
+            <div class="box box2">
+                <div class="image">
+                    <img class="logo" src="{{ logo_path }}" alt="会社ロゴ">
+                    <img class="seal" src="{{ seal_path }}" alt="会社印鑑">
+                </div> <!-- 弊社ロゴ -->
+                <div class="info">
+                    <div class="text">{{ company.name }}</div> <!-- 弊社名 -->
+                    <div class="text">{{ company.address }}</div> <!-- 弊社住所 -->
+                    <div class="text">{{ company.phone }}</div> <!-- 弊社電話番号 -->
+                    <div class="text">{{ quotation.contact_name }}</div> <!-- 担当者名 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block2">
+        <table>
+            <!-- 列幅の設定 -->
+            <colgroup>
+                <col> <!-- 品名 -->
+                <col> <!-- 数量 -->
+                <col> <!-- 単価 -->
+                <col> <!-- 小計 -->
+            </colgroup>
+            
+            <!-- ヘッダー -->
+            <thead>
+                <tr>
+                    <th>品名</th>
+                    <th>数量</th>
+                    <th>単価</th>
+                    <th>小計</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 各アイテム -->
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.item_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>¥{{ item.unit_price|intcomma }}</td>
+                    <td>¥{{ item.subtotal|intcomma }}</td>
+                </tr>
+                {% endfor %}
+
+                <!-- 小計、消費税、合計 -->
+                <tr>
+                    <td class="blank"></td>
+                    <td class="blank"></td>
+                    <td>小計</td>
+                    <td>¥{{ total_amount|intcomma }}</td>
+                </tr>
+                <tr>
+                    <td class="blank"></td>
+                    <td class="blank"></td>
+                    <td>消費税</td>
+                    <td>¥{{ tax_amount|intcomma }}</td>
+                </tr>
+                <tr>
+                    <td class="blank"></td>
+                    <td class="blank"></td>
+                    <td>合計</td>
+                    <td>¥{{ total_with_tax|intcomma }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block3">
+        <div class="box1">
+            <div class="label">振込先</div>
+            <div class="text">{{ company.bank_details }}</div> <!-- 銀行口座 -->
+        </div>
+        <div class="box2">
+            <div class="text">担当者：{{ user.first_name }} {{ user.last_name }}</div>
+        </div>
+    </div>
+
+</div><!-- contents-wrap -->
+
+</div><!-- end -->

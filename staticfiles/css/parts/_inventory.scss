@@ -1,0 +1,46 @@
+@use "../global/global";
+
+.inventory{
+    .search{
+        margin: 40px auto;
+        .wrap{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        a.allpost{
+            @include flex();
+            margin-top: 8px;
+        }
+    }//search
+    &__grid{
+        .area {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            align-items: center;
+            .image{
+                .adminUser{
+                    text-align: center;
+                    margin-top: 4px;
+                    @include fs(10);
+                }
+            }
+        }
+        .text{
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: 8px 40px;
+            .head{
+                font-weight: bold;
+                @include fs(10);
+            }
+            .textarea{
+                min-height: 50px;
+                @include fs(10);
+            }
+        }
+    }//grid
+}

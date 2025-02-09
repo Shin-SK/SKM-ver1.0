@@ -1,0 +1,30 @@
+<div>
+    <h2>社員情報</h2>
+    <p>名前: {{ employee.last_name }} {{ employee.first_name }}</p>
+    <p>メール: {{ employee.email }}</p>
+    <p>部署: {{ employee.department|default:"未設定" }}</p>
+    <p>社員番号: {{ employee.employee_number|default:"未設定" }}</p>
+    <p>電話番号: {{ employee.phone_number|default:"未設定" }}</p>
+
+    <h3>動的属性</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>項目</th>
+                <th>値</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in employee.dynamic_attributes.items %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2">追加情報はありません。</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
