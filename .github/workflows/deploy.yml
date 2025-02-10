@@ -28,7 +28,7 @@ jobs:
           sudo apt-get install -y zip unzip
           pip install awsebcli
 
-      - name: Configure AWS CLI
+      - name: Set up AWS CLI
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -38,10 +38,25 @@ jobs:
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
           aws configure set default.region $AWS_DEFAULT_REGION
 
+      - name: Set up Elastic Beanstalk Config
+        run: |
+          mkdir -p ~/.elasticbeanstalk
+          echo "
+          global:
+            application_name: SKM
+            default_region: ap-northeast-1
+            profile: null
+          deploy:
+            branch-defaults:
+              main:
+                environment: SKM-env
+            environments:
+              - SKM-env
+          " > ~/.elasticbeanstalk/config.yml
+
       - name: Deploy to Elastic Beanstalk
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          eb init -p python-3.9 SKM --region $AWS_DEFAULT_REGION
           eb deploy
