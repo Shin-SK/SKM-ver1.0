@@ -54,6 +54,10 @@ main{
     background-color: $lmc;
     border-top-left-radius: 40px;
     padding: 24px 40px;
+    &.main-unset{
+        border-top-left-radius: unset;
+        padding: unset;
+    }
 }
 
 aside{

@@ -1,0 +1,16 @@
+.login{
+    min-height: 100vh;
+    @include flex();
+    width: 100vw;
+    flex-direction: column;
+    margin-bottom: 0;
+    gap: 16px;
+    .form{
+        p{
+            margin-bottom: 16px;
+        }
+        button{
+            margin-top: 40px;
+        }
+    }
+}

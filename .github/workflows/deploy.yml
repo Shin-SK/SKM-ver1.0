@@ -54,6 +54,10 @@ jobs:
               - SKM-env
           " > ~/.elasticbeanstalk/config.yml
 
+      - name: Set Elastic Beanstalk Environment
+        run: |
+          eb use SKM-env
+
       - name: Deploy to Elastic Beanstalk
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

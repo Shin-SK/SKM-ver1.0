@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = '/Users/skii/Library/CloudStorage/Dropbox/BMS/master'  # 明示的なプロジェクトルート
@@ -23,13 +22,14 @@ PROJECT_ROOT = '/Users/skii/Library/CloudStorage/Dropbox/BMS/master'  # 明示�
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-m7zemy)2^4u$7a(bg)#&-#87s^adr^_46)j6vmwwx*%y6_8-jy'
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'skm-env.eba-pcpkswfn.ap-northeast-1.elasticbeanstalk.com'
+]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -101,6 +101,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -138,12 +139,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'  # URLパス
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # プロジェクトのstaticディレクトリ
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # collectstatic後の保存場所
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # プロジェクト直下の static を指定
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # collectstatic用
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -162,29 +161,20 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'file': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/changes.log'),
+            'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
         },
     },
     'loggers': {
         'django': {
             'handlers': ['file'],
-            'level': 'INFO',
+            'level': 'DEBUG',
             'propagate': True,
-        },
-        'django.server': {  # GETリクエストを記録するロガー
-            'handlers': ['file'],  # ログの保存先を指定
-            'level': 'WARNING',  # INFOからWARNINGに変更（GETリクエストを抑制）
-            'propagate': False,
-        },
-        'django.utils.autoreload': {  # StatReloader のログを抑制
-            'handlers': ['file'],
-            'level': 'WARNING',
-            'propagate': False,
         },
     },
 }
+
 
 # logsディレクトリが存在しない場合に作成
 log_dir = os.path.join(BASE_DIR, 'logs')
