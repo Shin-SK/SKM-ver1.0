@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+
+SECRET_KEY = config('DJANGO_SECRET_KEY')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,11 +29,11 @@ PROJECT_ROOT = '/Users/skii/Library/CloudStorage/Dropbox/BMS/master'  # 明示�
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'skm-env.eba-pcpkswfn.ap-northeast-1.elasticbeanstalk.com'
+    'web-production-5310d.up.railway.app',  # Railway.appのURLを追加
 ]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Application definition
 
@@ -61,6 +65,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',  # ここを追加
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'bms.urls'
@@ -141,7 +147,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'  # URLパス
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # プロジェクトのstaticディレクトリ
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # collectstatic後の保存場所
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Default primary key field type
