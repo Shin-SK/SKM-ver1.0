@@ -190,3 +190,4 @@ os.makedirs(log_dir, exist_ok=True)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
