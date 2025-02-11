@@ -1,27 +1,18 @@
 from pathlib import Path
 import os
 import dj_database_url
-from decouple import config
 
 # BASE_DIR の設定
 BASE_DIR = Path(__file__).resolve().parent.parent
-PROJECT_ROOT = '/Users/skii/Library/CloudStorage/Dropbox/BMS/master'  # 明示的なプロジェクトルート
 
 # SECRET_KEY の取得
-SECRET_KEY = config('DJANGO_SECRET_KEY')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 
-# 本番環境判定（環境変数 DJANGO_ENV を使う）
-IS_PRODUCTION = os.getenv('DJANGO_ENV') == 'production'
-
-# デバッグモード
-DEBUG = not IS_PRODUCTION
+# DEBUG の設定
+DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
 
 # 許可するホスト
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    'skm-sk-tokyo-net.herokuapp.com',
-]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost,skm-sk-tokyo-net.herokuapp.com').split(',')
 
 # アプリケーション
 INSTALLED_APPS = [
@@ -34,10 +25,10 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django_browser_reload',
     'bms',
-    'attendance',  # 勤怠アプリ
-    'accounts',  # アカウント
+    'attendance',
+    'accounts',
     'inventory',
-    'customers',  # 追加
+    'customers',
     'docspdf',
     'core',
     'notifications',
@@ -52,7 +43,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_browser_reload.middleware.BrowserReloadMiddleware',  # ここを追加
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
@@ -84,47 +74,33 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 WSGI_APPLICATION = 'bms.wsgi.application'
 
 # データベース設定
-if IS_PRODUCTION:
-    DATABASES = {
-        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-    }
-else:
+DATABASES = {
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL', ''))
+}
+
+if not DATABASES['default']:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'skm',
-            'USER': 'skmaster',
-            'PASSWORD': 'sktokyo031114',
-            'HOST': 'localhost',
-            'PORT': '5432',
+            'NAME': os.getenv('DB_NAME', 'skm'),
+            'USER': os.getenv('DB_USER', 'skmaster'),
+            'PASSWORD': os.getenv('DB_PASSWORD', 'sktokyo031114'),
+            'HOST': os.getenv('DB_HOST', 'localhost'),
+            'PORT': os.getenv('DB_PORT', '5432'),
         }
     }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# 認証設定
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
-]
-
-# 言語とタイムゾーン
-LANGUAGE_CODE = 'ja'
-TIME_ZONE = 'Asia/Tokyo'
-USE_I18N = True
-USE_TZ = True
-USE_L10N = True
-
 # 静的ファイル設定
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # メディア設定
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # ログイン関連
 LOGIN_REDIRECT_URL = '/mypage/'
@@ -151,5 +127,5 @@ LOGGING = {
 }
 
 # logsディレクトリ作成
-log_dir = os.path.join(BASE_DIR, 'logs')
+log_dir = BASE_DIR / 'logs'
 os.makedirs(log_dir, exist_ok=True)
