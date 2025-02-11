@@ -129,3 +129,5 @@ LOGGING = {
 # logsディレクトリ作成
 log_dir = BASE_DIR / 'logs'
 os.makedirs(log_dir, exist_ok=True)
+
+LANGUAGE_CODE = 'ja'
