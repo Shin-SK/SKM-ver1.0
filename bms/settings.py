@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
 
 # 許可するホスト
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost,skm-sk-tokyo-net.herokuapp.com').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost,skm-sk-tokyo-net.herokuapp.com,skm.sk-tokyo.net,skm-sk-tokyo-net-a3a278cbede9.herokuapp.com').split(',')
 
 # アプリケーション
 INSTALLED_APPS = [
