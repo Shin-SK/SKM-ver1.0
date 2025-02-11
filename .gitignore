@@ -1,5 +1,4 @@
 .DS_Store
-.platform/hooks/prebuild/.DS_Store
 
 # 仮想環境を無視
 venv/

@@ -106,21 +106,21 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_REDIRECT_URL = '/mypage/'
 LOGIN_URL = '/login/'
 
-# ロギング設定
+# ロギング設定（エラーのみ記録）
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'ERROR',  # ERROR 以上のログのみ記録
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
+            'filename': os.path.join(BASE_DIR, 'logs/error.log'),  # ファイル名を変更
         },
     },
     'loggers': {
         'django': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': 'ERROR',  # ERROR 以上のログのみ
             'propagate': True,
         },
     },
