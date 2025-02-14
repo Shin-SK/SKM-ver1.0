@@ -6,43 +6,42 @@ document.addEventListener('DOMContentLoaded', function() {
         addRowButton.addEventListener('click', function() {
             const grid = document.querySelector('.docspdf__grid');
             const templateRow = grid.querySelector('.area.value');
-
             if (!templateRow) {
                 console.error("エラー: クローンする行が見つかりません");
                 return;
             }
-
             const newIndex = parseInt(totalForms.value);
             const newRow = templateRow.cloneNode(true);
 
-            // 更新されたインデックスを設定
+            // インデックスの置換
             newRow.innerHTML = newRow.innerHTML.replace(/-\d+-/g, `-${newIndex}-`);
-            grid.appendChild(newRow);
 
-            // `TOTAL_FORMS` の値を更新
-            totalForms.value = newIndex + 1;
-
-            // 各フィールドの値をクリア
+            // 各フィールドの値をクリアし、nameとidも更新
             const inputs = newRow.querySelectorAll('input, select, textarea');
             inputs.forEach(input => {
                 input.value = '';
                 input.name = input.name.replace(/-\d+-/g, `-${newIndex}-`);
                 input.id = input.id.replace(/-\d+-/g, `-${newIndex}-`);
             });
+
+            grid.appendChild(newRow);
+            totalForms.value = newIndex + 1;
         });
     }
 
-    // 削除ボタンの動作を追加（削除ボタンを JS で作らない代わりに、削除処理は実装）
+    // 削除ボタンの処理（delete-rowクラスをチェック）
     document.addEventListener('click', function(event) {
-        if (event.target.classList.contains('delete-row')) {
-            const row = event.target.closest('.area.value');
-            row.remove();
-
-            // `TOTAL_FORMS` の値を減らす
-            totalForms.value = Math.max(0, parseInt(totalForms.value) - 1);
+        const deleteBtn = event.target.closest('.delete-row');
+        if (deleteBtn) {
+            const row = deleteBtn.closest('.area.value');
+            if (row) {
+                row.remove();
+                totalForms.value = Math.max(0, parseInt(totalForms.value) - 1);
+            }
         }
     });
 });
+
 
 
 

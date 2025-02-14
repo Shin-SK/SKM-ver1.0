@@ -37,7 +37,7 @@
         <div class="area">
             <div class="image">
                 {% if item.image %}
-                    <img src="{{ item.image.url }}" alt="{{ item.product_name }}">
+                    <img src="{{ inventory_item.image.url }}" alt="{{ item.product_name }}">
                 {% else %}
                     <img src="{% static 'image/noimage.png' %}" alt="">
                 {% endif %}

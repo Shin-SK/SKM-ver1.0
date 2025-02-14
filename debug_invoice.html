@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  
+  <meta charset="UTF-8">
+  <title>請求書</title>
+  <link rel="stylesheet" href="/static/css/pdf_style.css">
+</head>
+<body class="printPDF-body">
+    <div class="printPDF-wrap">
+    
+  
+
+<div class="docspdf printPDF">
+    <header>
+        <div class="mainTitle">請求書</div>
+    </header>
+
+<div class="contents-wrap">
+
+    <div class="block1 grid">
+        <div class="left"><!-- 左 -->
+            <div class="flexwrap ue">
+                <div class="box box1">
+                    <div class="name grid bbb">
+                        <div class="head">株式会社ほげの</div>
+                        <div class="text">御中</div>
+                    </div>
+                    <div class="adress"></div>
+                </div>
+                <div class="box box2">
+                    <div class="grid">
+                        <div class="label head">案件名</div>
+                        <div class="text head">未設定</div>
+                    </div>
+                    <p>下記の通りご請求申し上げます。</p>
+                </div>
+                <div class="box box3">
+                    <div class="grid bbb">
+                        <div class="label head">合計金額</div>
+                        <div class="text amount head">¥2,200</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flexwrap">
+                <div class="box box4">
+                    <div class="grid">
+                        <div class="label">納期</div>
+                        <div class="text">月末</div> <!-- 納期 -->
+                    </div>
+                    <div class="grid">
+                        <div class="label">締め日</div>
+                        <div class="text">月末</div> <!-- 締め日 -->
+                    </div>
+                    <div class="grid">
+                        <div class="label">請求日</div>
+                        <div class="text">翌月末</div> <!-- 請求日 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right"><!-- 右 -->
+            <div class="box box1">
+                <div class="grid">
+                    <div class="label">発行日</div>
+                    <div class="text">2025年02月12日</div> <!-- 発行日 -->
+                    <div class="label">請求番号</div>
+                    <div class="text">02131018</div> <!-- 請求番号 -->
+                </div>
+            </div>
+            <div class="box box2">
+                <div class="image">
+                    <img class="logo" src="" alt="会社ロゴ">
+                    <img class="seal" src="" alt="会社印鑑">
+                </div> <!-- 弊社ロゴ -->
+                <div class="info">
+                    <div class="text"></div> <!-- 弊社名 -->
+                    <div class="text"></div> <!-- 弊社住所 -->
+                    <div class="text"></div> <!-- 弊社電話番号 -->
+                    <div class="text">担当者： </div> <!-- 担当者名 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block2">
+        <table>
+            <!-- 列幅の設定 -->
+            <colgroup>
+                <col> <!-- 品名 -->
+                <col> <!-- 数量 -->
+                <col> <!-- 単価 -->
+                <col> <!-- 小計 -->
+            </colgroup>
+            
+            <!-- ヘッダー -->
+            <thead>
+                <tr>
+                    <th>品名</th>
+                    <th>数量</th>
+                    <th>単価</th>
+                    <th>小計</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <!-- 各アイテム -->
+            
+            <tr>
+                <td>イヤホン</td>
+                <td>1</td>
+                <td>¥1,000</td>
+                <td>¥1,000</td>
+            </tr>
+            
+            <tr>
+                <td>バナナ</td>
+                <td>5</td>
+                <td>¥200</td>
+                <td>¥1,000</td>
+            </tr>
+            
+
+
+                <!-- 小計、消費税、合計 -->
+                <tr>
+                    <td class="blank"></td>
+                    <td class="blank"></td>
+                    <td>小計</td>
+                    <td>¥2,000</td>
+                </tr>
+                <tr>
+                    <td class="blank"></td>
+                    <td class="blank"></td>
+                    <td>消費税</td>
+                    <td>¥200</td>
+                </tr>
+                <tr>
+                    <td class="blank"></td>
+                    <td class="blank"></td>
+                    <td>合計</td>
+                    <td>¥2,200</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <div class="block3">
+            <div class="box1">
+                <p class="caution">[備考]振込手数料は、お客様にてご負担願います。</p>
+                <div class="wrap">
+                    <div class="label">振込先</div>
+                    <div class="text"></div> <!-- 銀行口座 -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+</div><!-- contents-wrap -->
+
+
+
+
+</div><!-- end -->
+
+
+    </div>
+</body>
+</html>

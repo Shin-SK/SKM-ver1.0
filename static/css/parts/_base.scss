@@ -8,6 +8,13 @@ body{
 
 a{
     text-decoration: unset;
+    &.link{
+        @include flex();
+        border-bottom: 1px $mc solid;
+        margin-bottom: 4px;
+        margin: auto;
+        width: fit-content;
+    }
 }
 
 .header{

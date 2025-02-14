@@ -2,8 +2,9 @@ from django.contrib import admin
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from .models import Notification
+from core.models import CompanyProfile  # 会社情報から送信元メールを取得
 
-@admin.register(Notification)
+@admin.register(Notification)  # ← ここだけにする！
 class NotificationAdmin(admin.ModelAdmin):
     list_display = ('title', 'notification_type', 'scheduled_at', 'created_at', 'sent')
     list_filter = ('notification_type', 'scheduled_at', 'created_at', 'sent')
@@ -14,6 +15,10 @@ class NotificationAdmin(admin.ModelAdmin):
         # モデルの保存処理のみ
         super().save_model(request, obj, form, change)
 
+        # 送信元メールアドレスの取得
+        company = CompanyProfile.objects.first()
+        email_from = company.email if company else "no-reply@sk-tokyo.net"
+
         # メール送信対象の設定
         recipients = []
         if obj.notification_type == '全体':
@@ -21,23 +26,29 @@ class NotificationAdmin(admin.ModelAdmin):
         elif obj.notification_type == '部署' and obj.department:
             recipients = ['department@example.com']  # 適宜変更
 
-        # メール本文をテンプレートから作成
-        email_body = render_to_string('notifications/email_notification.html', {
-            'title': obj.title,
-            'body': obj.body,
-            'notification_type': obj.notification_type,
-            'department': obj.department,
-        })
+        if recipients:
+            # メール本文をテンプレートから作成
+            email_body = render_to_string('notifications/email_notification.html', {
+                'title': obj.title,
+                'body': obj.body,
+                'notification_type': obj.notification_type,
+                'department': obj.department,
+            })
 
-        # メール送信
-        email = EmailMessage(
-            subject=obj.title,
-            body=email_body,
-            from_email='your_email@gmail.com',
-            to=recipients,
-        )
-        email.content_subtype = "html"  # HTMLメールを指定
-        email.send()
+            # メール送信
+            email = EmailMessage(
+                subject=obj.title,
+                body=email_body,
+                from_email=email_from,
+                to=recipients,
+            )
+            email.content_subtype = "html"  # HTMLメールを指定
+            email.send()
 
-        # ターミナル出力（デバッグ用）
-        # print(f"メール送信完了: {email_body}")
+            # 送信フラグを更新
+            obj.sent = True
+            obj.save()
+
+            # ターミナル出力（デバッグ用）
+            print(f"メール送信完了: {obj.title} -> {recipients}")
+

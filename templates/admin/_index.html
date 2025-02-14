@@ -1,0 +1,25 @@
+{% extends "admin/index.html" %}
+
+{% block content %}
+    <h1>管理者用ダッシュボード</h1>
+
+    <div id="content-main">
+        <div class="app-list">
+            {% for app in app_list %}
+                <div class="module">
+                    <table>
+                        <tbody>
+                            {% for model in app.models %}
+                                <tr>
+                                    <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                                    <td><a href="{{ model.add_url }}" class="addlink">追加</a></td>
+                                    <td><a href="{{ model.change_url }}" class="changelink">変更</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

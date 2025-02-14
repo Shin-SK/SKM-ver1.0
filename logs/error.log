@@ -1,0 +1,1315 @@
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/context.py", line 253, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/bms/context_processors.py", line 3, in <module>
+    from core.models import Company  # 会社情報のモデルをインポート
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ImportError: cannot import name 'Company' from 'core.models' (/Users/skii/Library/CloudStorage/Dropbox/BMS/master/core/models.py)
+"GET /admin/ HTTP/1.1" 500 167746
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    context = processor(self.request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/bms/context_processors.py", line 30, in company_name
+    CompanyProfile = apps.get_model('core', 'CompanyProfile')  # ← 修正！
+                     ^^^^
+NameError: name 'apps' is not defined
+"GET /admin/ HTTP/1.1" 500 116247
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/apps/registry.py", line 158, in get_app_config
+    return self.app_configs[app_label]
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: '管理者メニュー'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 557, in index
+    app_list = self.get_app_list(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 541, in get_app_list
+    app_dict = self._build_app_dict(request, app_label)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 523, in _build_app_dict
+    "name": apps.get_app_config(app_label).verbose_name,
+            ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/apps/registry.py", line 165, in get_app_config
+    raise LookupError(message)
+LookupError: No installed app with label '管理者メニュー'.
+"GET /admin/ HTTP/1.1" 500 109900
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/apps/registry.py", line 158, in get_app_config
+    return self.app_configs[app_label]
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: '管理者メニュー'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 557, in index
+    app_list = self.get_app_list(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 541, in get_app_list
+    app_dict = self._build_app_dict(request, app_label)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 523, in _build_app_dict
+    "name": apps.get_app_config(app_label).verbose_name,
+            ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/apps/registry.py", line 165, in get_app_config
+    raise LookupError(message)
+LookupError: No installed app with label '管理者メニュー'.
+"GET /admin/ HTTP/1.1" 500 109900
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/smartif.py", line 180, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: '["bms",'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/response.py", line 74, in resolve_template
+    return get_template(template, using=self.using)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 894, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/smartif.py", line 171, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/smartif.py", line 182, in translate_token
+    return self.create_var(token)
+           ~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 897, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 605, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 706, in __init__
+    raise TemplateSyntaxError(
+    ...<2 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '["bms",' from '["bms",'
+"GET /admin/ HTTP/1.1" 500 229814
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/smartif.py", line 180, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: '"bms,core,customers"|split:","'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/response.py", line 74, in resolve_template
+    return get_template(template, using=self.using)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 894, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/smartif.py", line 171, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/smartif.py", line 182, in translate_token
+    return self.create_var(token)
+           ~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 897, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 605, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 701, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 611, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'split'
+"GET /admin/ HTTP/1.1" 500 233954
+Failed to send password reset email to 1
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/forms.py", line 424, in send_mail
+    email_message.send()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/mail/backends/smtp.py", line 136, in send_messages
+    sent = self._send(message)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/mail/backends/smtp.py", line 155, in _send
+    self.connection.sendmail(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        from_email, recipients, message.as_bytes(linesep="\r\n")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/smtplib.py", line 890, in sendmail
+    raise SMTPRecipientsRefused(senderrs)
+smtplib.SMTPRecipientsRefused: {'shin@sk-tokyo.net': (450, b'4.1.8 <webmaster@localhost>: Sender address rejected: Domain not found')}
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/accounts/views.py", line 29, in signup
+    send_mail(
+    ~~~~~~~~~^
+        'アカウント認証',
+        ^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        fail_silently=False,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/mail/__init__.py", line 88, in send_mail
+    return mail.send()
+           ~~~~~~~~~^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/mail/message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/mail/backends/smtp.py", line 136, in send_messages
+    sent = self._send(message)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/mail/backends/smtp.py", line 155, in _send
+    self.connection.sendmail(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        from_email, recipients, message.as_bytes(linesep="\r\n")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/smtplib.py", line 890, in sendmail
+    raise SMTPRecipientsRefused(senderrs)
+smtplib.SMTPRecipientsRefused: {'fkshin.004.iei@gmail.com': (450, b'4.1.8 <webmaster@localhost>: Sender address rejected: Domain not found')}
+"POST /signup/ HTTP/1.1" 500 93163
+Internal Server Error: /admin/core/companyprofile/1/change/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/options.py", line 1871, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/admin/options.py", line 1294, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/db/models/base.py", line 892, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/db/models/base.py", line 998, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1125, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/cloudinary/models.py", line 112, in pre_save
+    instance_value = uploader.upload_resource(value, **options)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/cloudinary/uploader.py", line 252, in upload_resource
+    result = upload_func(file, **options)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/cloudinary/uploader.py", line 197, in upload
+    return call_cacheable_api("upload", params, file=file, **options)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/cloudinary/uploader.py", line 833, in call_cacheable_api
+    result = call_api(action, params, http_headers, return_error, unsigned, file, timeout, **options)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/cloudinary/uploader.py", line 881, in call_api
+    params = utils.sign_request(params, options)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/cloudinary/utils.py", line 617, in sign_request
+    raise ValueError("Must supply api_key")
+ValueError: Must supply api_key
+"POST /admin/core/companyprofile/1/change/ HTTP/1.1" 500 172055
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 239, in invoice_pdf
+    css_path = settings.STATICFILES_DIRS[0] + '/css/style.css'
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for +: 'PosixPath' and 'str'
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 79312
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 241, in invoice_pdf
+    css_path = str(Path(settings.STATICFILES_DIRS[0]) / 'css' / 'style.css')
+                   ^^^^
+NameError: name 'Path' is not defined
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 79082
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 241, in invoice_pdf
+    css_path = str(Path(settings.STATICFILES_DIRS[0]) / 'css' / 'style.css')
+                   ^^^^
+NameError: name 'Path' is not defined
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 79082
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 247, in invoice_pdf
+    url_fetcher=custom_fetcher
+                ^^^^^^^^^^^^^^
+NameError: name 'custom_fetcher' is not defined
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 79348
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 229, in invoice_pdf
+    print("ロゴURL:", company.logo_url)
+                      ^^^^^^^^^^^^^^^^
+AttributeError: 'CompanyProfile' object has no attribute 'logo_url'
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 71465
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 199, in render
+    template = context.template.engine.select_template(template_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 214, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: docspdf/incoice_pdf_content.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 235, in invoice_pdf
+    html_string = render_to_string('docspdf/invoice_pdf.html', {  # PDF専用テンプレートを使用
+        'invoice': invoice,
+    ...<5 lines>...
+        'user': request.user,
+    })
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: docspdf/incoice_pdf_content.html
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 154991
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 246, in invoice_pdf
+    html.write_pdf(response, stylesheets=[css], url_fetcher=default_url_fetcher)
+                                                            ^^^^^^^^^^^^^^^^^^^
+NameError: name 'default_url_fetcher' is not defined
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 78173
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 335, in invoice_pdf
+    css = CSS(filename=css_url)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 296, in __init__
+    with result as (source_type, source, base_url, protocol_encoding):
+         ^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 393, in _select_source
+    with open(filename, 'rb') as file_obj:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'file:///Users/skii/Library/CloudStorage/Dropbox/BMS/master/static/css/pdf_style.css'
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 93972
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 330, in invoice_pdf
+    css = CSS(filename=f"file://{css_path.resolve()}")  # `file://` を付与
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 296, in __init__
+    with result as (source_type, source, base_url, protocol_encoding):
+         ^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 393, in _select_source
+    with open(filename, 'rb') as file_obj:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'file:///Users/skii/Library/CloudStorage/Dropbox/BMS/master/static/css/pdf_style.css'
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 87945
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 330, in invoice_pdf
+    css = CSS(filename=f"file://{css_path.resolve()}")  # `file://` を付与
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 296, in __init__
+    with result as (source_type, source, base_url, protocol_encoding):
+         ^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 393, in _select_source
+    with open(filename, 'rb') as file_obj:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'file:///Users/skii/Library/CloudStorage/Dropbox/BMS/master/static/css/pdf_style.css'
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 88117
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 323, in invoice_pdf
+    css_url = base_url + static('css/pdf_style.css')
+                         ^^^^^^
+NameError: name 'static' is not defined
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 72291
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 320, in invoice_pdf
+    css_url = base_url + static('css/pdf_style.css')
+                         ^^^^^^
+NameError: name 'static' is not defined
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 72160
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 311, in invoice_pdf
+    invoice = get_object_or_404(Invoice, pk=pk)
+              ^^^^^^^^^^^^^^^^^
+NameError: name 'get_object_or_404' is not defined
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 70691
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 339, in invoice_pdf
+    css = CSS(filename=css_url)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 296, in __init__
+    with result as (source_type, source, base_url, protocol_encoding):
+         ^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 393, in _select_source
+    with open(filename, 'rb') as file_obj:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'file:///Users/skii/Library/CloudStorage/Dropbox/BMS/master/static/css/pdf_style.css'
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 93701
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 339, in invoice_pdf
+    css = CSS(filename=css_url)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 296, in __init__
+    with result as (source_type, source, base_url, protocol_encoding):
+         ^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 393, in _select_source
+    with open(filename, 'rb') as file_obj:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'file:///Users/skii/Library/CloudStorage/Dropbox/BMS/master/static/css/pdf_style.css'
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 93873
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 339, in invoice_pdf
+    css = CSS(filename=css_url)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 296, in __init__
+    with result as (source_type, source, base_url, protocol_encoding):
+         ^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 393, in _select_source
+    with open(filename, 'rb') as file_obj:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'file:///Users/skii/Library/CloudStorage/Dropbox/BMS/master/static/css/style.css'
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 93652
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 339, in invoice_pdf
+    css = CSS(filename=css_url)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 296, in __init__
+    with result as (source_type, source, base_url, protocol_encoding):
+         ^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 393, in _select_source
+    with open(filename, 'rb') as file_obj:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'file:///Users/skii/Library/CloudStorage/Dropbox/BMS/master/static/css/style.css'
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 93824
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 339, in invoice_pdf
+    css = CSS(filename=css_url)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 296, in __init__
+    with result as (source_type, source, base_url, protocol_encoding):
+         ^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 393, in _select_source
+    with open(filename, 'rb') as file_obj:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'file:///Users/skii/Library/CloudStorage/Dropbox/BMS/master/static/css/pdf_style.css'
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 93692
+Internal Server Error: /docspdf/invoice_pdf/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 339, in invoice_pdf
+    css = CSS(filename=css_url)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 296, in __init__
+    with result as (source_type, source, base_url, protocol_encoding):
+         ^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/weasyprint/__init__.py", line 393, in _select_source
+    with open(filename, 'rb') as file_obj:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'file:///Users/skii/Library/CloudStorage/Dropbox/BMS/master/static/css/pdf_style.css'
+"GET /docspdf/invoice_pdf/1/ HTTP/1.1" 500 93745
+Internal Server Error: /docspdf/invoice_confirm/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 213, in invoice_confirm
+    return render(request, 'docspdf/invoice_confirm.html', {
+        'invoice': invoice,
+    ...<4 lines>...
+        'company': company,
+    })
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 199, in render
+    template = context.template.engine.select_template(template_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 208, in select_template
+    return self.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 861, in do_for
+    sequence = parser.compile_filter(bits[in_index + 1])
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 605, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 701, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 611, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'list'
+"GET /docspdf/invoice_confirm/1/ HTTP/1.1" 500 244049
+Internal Server Error: /docspdf/invoice_confirm/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 213, in invoice_confirm
+    return render(request, 'docspdf/invoice_confirm.html', {
+        'invoice': invoice,
+    ...<4 lines>...
+        'company': company,
+    })
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 199, in render
+    template = context.template.engine.select_template(template_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 208, in select_template
+    return self.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 861, in do_for
+    sequence = parser.compile_filter(bits[in_index + 1])
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 605, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 701, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 611, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'list'
+"GET /docspdf/invoice_confirm/1/ HTTP/1.1" 500 244069
+Internal Server Error: /docspdf/invoice_confirm/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 213, in invoice_confirm
+    return render(request, 'docspdf/invoice_confirm.html', {
+        'invoice': invoice,
+    ...<4 lines>...
+        'company': company,
+    })
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 199, in render
+    template = context.template.engine.select_template(template_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 208, in select_template
+    return self.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1540, in do_with
+    nodelist = parser.parse(("endwith",))
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 861, in do_for
+    sequence = parser.compile_filter(bits[in_index + 1])
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 605, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 701, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 611, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'range'
+"GET /docspdf/invoice_confirm/1/ HTTP/1.1" 500 261129
+Internal Server Error: /docspdf/invoice_confirm/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 216, in invoice_confirm
+    return render(request, 'docspdf/invoice_confirm.html', {
+        'invoice': invoice,
+    ...<4 lines>...
+        'company': company,
+    })
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 199, in render
+    template = context.template.engine.select_template(template_name)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 208, in select_template
+    return self.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 573, in invalid_block_tag
+    raise self.error(
+    ...<3 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 105: 'else'. Did you forget to register or load this tag?
+"GET /docspdf/invoice_confirm/1/ HTTP/1.1" 500 227846
+Internal Server Error: /docspdf/edit/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base_pdf.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 244, in edit_quotation
+    return render(request, 'docspdf/edit_quotation.html', {
+        'form': form,
+        'formset': formset,
+    })
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base_pdf.html
+"GET /docspdf/edit/1/ HTTP/1.1" 500 135753
+Internal Server Error: /docspdf/edit/1/
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base_pdf.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/docspdf/views.py", line 244, in edit_quotation
+    return render(request, 'docspdf/edit_quotation.html', {
+        'form': form,
+        'formset': formset,
+    })
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/skii/Library/CloudStorage/Dropbox/BMS/master/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base_pdf.html
+"GET /docspdf/edit/1/ HTTP/1.1" 500 135753

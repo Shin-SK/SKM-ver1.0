@@ -1,8 +1,14 @@
-{% extends "base.html" %}
+{% extends "base-noFrame.html" %}
 
 {% block title %}メール送信{% endblock %}
 
 {% block content %}
-<h1>メールを送信しました</h1>
-<p>登録されたメールアドレスを確認してください。</p>
+
+<section class="login edit noFrame">
+    <div class="container">
+        <div class="mainTitle">メールを送信しました</div>
+        <div class="subTitle">登録されたメールアドレスを確認してください。</div>
+    </div>
+</section>
+
 {% endblock %}

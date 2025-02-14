@@ -1,12 +1,21 @@
-{% extends "base.html" %}
+{% extends "base-noFrame.html" %}
 
 {% block title %}新規登録{% endblock %}
 
 {% block content %}
-<h1>新規登録</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">登録</button>
-</form>
+<section class="login edit">
+    <div class="container">
+        <div class="mainTitle">新規登録</div>
+        <div class="form">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">登録</button>
+            </form>
+        </div>
+        <div class="login-link">
+            <a href="{% url 'login' %}">ログイン</a>
+        </div>
+    </div>
+</section>
 {% endblock %}

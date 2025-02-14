@@ -1,0 +1,7 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ company_name }} 管理用ダッシュボード{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ company_name }} </a></h1>
+{% endblock %}

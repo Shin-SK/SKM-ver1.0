@@ -13,6 +13,11 @@ class Notification(models.Model):
         ('全体', '全体'),
         ('部署', '部署'),
     ]
+
+    class Meta:
+        verbose_name = "投稿"  # ← ここを変更
+        verbose_name_plural = "投稿"
+        
     notification_type = models.CharField(max_length=10, choices=NOTIFICATION_TYPES)
     
     # 部署名（部署通知の場合のみ指定）

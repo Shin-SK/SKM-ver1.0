@@ -1,4 +1,4 @@
-{% extends "base-login.html" %}
+{% extends "base-noFrame.html" %}
 
 {% block title %}ログイン{% endblock %}
 
@@ -12,6 +12,9 @@
                 {{ form.as_p }}
                 <button type="submit">ログイン</button>
             </form>
+        </div>
+        <div class="signup">
+            <a href="{% url 'signup' %}">新規登録</a>
         </div>
     </div>
 </section>

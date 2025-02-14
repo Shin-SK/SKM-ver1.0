@@ -1,9 +1,17 @@
-{% extends "base.html" %}
+{% extends "base-noFrame.html" %}
 
 {% block title %}アカウント認証成功{% endblock %}
 
 {% block content %}
-<h1>アカウントが認証されました！</h1>
-<p>ログイン画面からログインしてください。</p>
-<a href="{% url 'login' %}">ログイン画面に進む</a>
+
+<section class="login noFrame">
+    <div class="container">
+        <div class="mainTitle">アカウントが認証されました！</div>
+        <div class="subTitle">ログイン画面からログインしてください。</div>
+        <button>
+            <a href="{% url 'login' %}">ログイン画面に進む</a>
+        </button>
+    </div>
+</section>
+
 {% endblock %}

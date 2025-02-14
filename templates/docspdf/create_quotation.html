@@ -4,6 +4,7 @@
 
 <div class="quotation docspdf edit">
   <h1>見積書の作成</h1>
+  <a class="link" href="{% url 'quotation_list' %}">見積書一覧</a>
 
   <!-- エラーメッセージの表示 -->
   {% if form_errors %}
@@ -19,53 +20,54 @@
   {% if formset_errors %}
     <div class="alert alert-danger">
       <ul>
-        {% for error in formset_errors %}
+        {% for error in formset_errors.values %}
           <li>{{ error }}</li>
         {% endfor %}
       </ul>
     </div>
   {% endif %}
 
-  <form method="post" class="form" >
+  <form method="post" class="form">
     {% csrf_token %}
-      <div class="form__wrap">
-          {% for field in form %}
-          <div class="box">
-              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              {{ field }}
-          </div>
-          {% endfor %}
-      </div>
-
-    <div class="mainTitle">見積項目</div>
-    {{ formset.management_form }}
-    <div class="docspdf__grid">
-      <!-- ヘッダー -->
-      <div class="area head">
-          <div class="cell">品名</div>
-          <div class="cell">数量</div>
-          <div class="cell">単価</div>
-          <div class="cell">編集</div>
-      </div>
-  
-      <!-- レコードをループで表示 -->
-      {% for form in formset %}
-      <div class="area value">
-            {{ form.management_form }}
-            {{ form.id }}
-            <div class="cell">{{ form.item_name }}</div>
-            <div class="cell">{{ form.quantity }}</div>
-            <div class="cell">{{ form.unit_price }}</div>
-            <div class="cell button">
-                <button type="button" class="delete"><i class="fas fa-pen"></i>削除</button>
-                <button type="button" id="add-row" class="add"><i class="fas fa-plus"></i>項目を追加</button>
-            </div>
+    <div class="form__wrap">
+      {% for field in form %}
+      <div class="box">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}
+          <small class="text-danger">{{ field.errors }}</small>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
 
-    <div class="add">
+    <div class="mainTitle">見積もり項目</div>
+    {{ formset.management_form }}
+    <div class="docspdf__grid">
+      <!-- 独立した追加ボタン -->
+      <button type="button" id="add-row" class="add"><i class="fas fa-plus"></i>項目を追加</button>
 
+      <!-- ヘッダー -->
+      <div class="area head">
+        <div class="cell">品名</div>
+        <div class="cell">数量</div>
+        <div class="cell">単価</div>
+        <div class="cell">編集</div>
+      </div>
+
+      <!-- レコードをループで表示 -->
+      {% for form in formset %}
+      <div class="area value">
+        {{ form.management_form }}
+        {{ form.id }}
+        <div class="cell">{{ form.item_name }}</div>
+        <div class="cell">{{ form.quantity }}</div>
+        <div class="cell">{{ form.unit_price }}</div>
+        <div class="cell button">
+          <button type="button" class="delete-row"><i class="fas fa-pen"></i>削除</button>
+        </div>
+      </div>
+      {% endfor %}
     </div>
 
     <div class="submit">

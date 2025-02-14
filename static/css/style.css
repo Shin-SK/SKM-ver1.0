@@ -422,6 +422,16 @@ body {
 a {
   text-decoration: unset;
 }
+a.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px #0f0f0f solid;
+  margin-bottom: 4px;
+  margin: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+}
 
 .header {
   position: fixed;
@@ -1206,9 +1216,19 @@ body {
 .docspdf__grid {
   margin-top: 40px;
 }
+.docspdf__grid button.add {
+  background-color: unset;
+  border-radius: unset;
+  color: #0f0f0f;
+  border: 1px black solid;
+  margin-bottom: 40px;
+}
+.docspdf__grid button.add i {
+  margin-right: 8px;
+}
 .docspdf__grid .area {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr) 50px;
   gap: 40px;
   align-items: center;
 }
@@ -1255,91 +1275,129 @@ body {
 }
 
 .preview {
-  width: 100%;
-  transform: scale(0.8);
+  width: 210mm;
+  margin: auto;
+  background-color: white;
   transform-origin: top center;
+  aspect-ratio: 1/1.414;
 }
 
+@page {
+  margin: 0;
+}
 .printPDF {
+  width: 190mm;
+  height: 277mm;
+  padding: 10mm 0mm;
+  margin: auto 10mm;
+  position: relative;
   background-color: white;
-  padding: 80px;
-  aspect-ratio: 1/1.414;
-  max-width: 80%;
-  margin: 0 auto;
-  margin-top: 40px;
+  font-family: "pdfGosic", sans-serif;
+  font-size: 12px;
+}
+@font-face {
+  font-family: "pdfGosic";
+  src: url("../../static/fonts/NotoSansJP-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.printPDF header {
+  height: 8mm;
+  margin-bottom: 10mm;
 }
 .printPDF .mainTitle {
-  margin-bottom: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  font-weight: 800;
+  display: block;
 }
 .printPDF .contents-wrap {
   position: relative;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 259mm;
 }
 .printPDF .grid {
   display: grid;
   grid-template-columns: auto 1fr;
-  align-items: center;
 }
 .printPDF .grid .text {
   text-align: right;
 }
 .printPDF .head {
-  font-size: clamp(2rem, 1.9346938776rem + 0.2040816327vw, 2.2rem);
+  font-size: 16px;
   font-weight: bold;
 }
 .printPDF .bbb {
   border-bottom: 1px black solid;
 }
 .printPDF .block1 {
-  display: grid;
+  height: 65mm;
+}
+.printPDF .block1.grid {
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  height: 350px;
-  margin-bottom: 40px;
 }
 .printPDF .block1 .left {
   display: flex;
   flex-direction: column;
-  align-items: start;
   justify-content: space-between;
 }
+.printPDF .block1 .left .flexwrap.ue .box {
+  margin-bottom: 24px;
+}
+.printPDF .block1 .left .flexwrap.ue .box:last-of-type {
+  margin-bottom: unset;
+}
 .printPDF .block1 .left .box {
-  flex: 1;
   width: 100%;
 }
 .printPDF .block1 .left .box1 .text {
   font-weight: bold;
 }
+.printPDF .block1 .left .box2 .grid {
+  border-bottom: 1px black solid;
+}
 .printPDF .block1 .left p {
-  font-size: clamp(1rem, 0.9346938776rem + 0.2040816327vw, 1.2rem);
+  font-size: 10px;
   margin-top: 8px;
+}
+.printPDF .block1 .left .box4 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.printPDF .block1 .left .box4 .grid {
+  width: 100%;
+  border-bottom: 1px black dotted;
 }
 .printPDF .block1 .right {
   display: flex;
   flex-direction: column;
-  align-items: start;
   justify-content: space-between;
 }
-.printPDF .block1 .right .box {
-  flex: 1;
-  width: 100%;
-}
 .printPDF .block1 .right .box1 {
-  font-size: clamp(1rem, 0.9346938776rem + 0.2040816327vw, 1.2rem);
-  display: flex;
-  align-items: start;
-  justify-content: flex-end;
+  font-size: 10px;
+  position: relative;
+  height: 35px;
 }
 .printPDF .block1 .right .box1 .grid {
   width: 50%;
+  position: absolute;
+  height: auto;
+  right: 0;
 }
 .printPDF .block1 .right .box2 .image {
   position: relative;
-  display: flex;
-  justify-content: flex-end;
+  height: 30mm;
 }
 .printPDF .block1 .right .box2 .image .logo {
-  max-width: 150px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-height: 30mm;
 }
 .printPDF .block1 .right .box2 .image .seal {
   position: absolute;
@@ -1348,6 +1406,7 @@ body {
   z-index: 999;
   max-width: 50px;
   mix-blend-mode: multiply;
+  max-height: 10mm;
 }
 .printPDF .block1 .right .box2 .info {
   margin-top: 16px;
@@ -1356,7 +1415,7 @@ body {
   text-align: right;
 }
 .printPDF .block2 .head {
-  font-size: clamp(1.4rem, 1.3346938776rem + 0.2040816327vw, 1.6rem);
+  font-size: 14px;
 }
 .printPDF .block2 table {
   width: 100%;
@@ -1366,7 +1425,7 @@ body {
 }
 .printPDF .block2 table th, .printPDF .block2 table td {
   border: 1px solid #ccc;
-  padding: 8px;
+  padding: 4px;
   text-align: left;
 }
 .printPDF .block2 table th {
@@ -1375,7 +1434,7 @@ body {
   font-size: 10px;
 }
 .printPDF .block2 table td {
-  font-size: 14px;
+  font-size: 12px;
   vertical-align: middle;
 }
 .printPDF .block2 table colgroup col:first-child {
@@ -1387,29 +1446,27 @@ body {
 .printPDF .block2 table .blank {
   border: none;
 }
-.printPDF .block3 {
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  bottom: 0;
-  width: 100%;
+.printPDF footer .block3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
-.printPDF .block3 .box1 {
+.printPDF footer .block3 .box1 .caution {
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+.printPDF footer .block3 .box1 .wrap {
   border: 1px solid #ccc;
 }
-.printPDF .block3 .box1 > div {
+.printPDF footer .block3 .box1 .wrap > div {
   padding: 4px 16px;
-  font-size: clamp(1.2rem, 1.1346938776rem + 0.2040816327vw, 1.4rem);
+  font-size: 10px;
 }
-.printPDF .block3 .box1 .label {
+.printPDF footer .block3 .box1 .wrap .label {
   background-color: #f5f5f5;
   text-align: center;
 }
-.printPDF .block3 .box2 .text {
-  border-bottom: 1px solid #ccc;
-  font-size: clamp(1.2rem, 1.1346938776rem + 0.2040816327vw, 1.4rem);
-  padding-bottom: 4px;
+.printPDF footer .block3 .box1 .wrap .text {
+  text-align: center;
 }
 
 .login {
@@ -1431,7 +1488,7 @@ body {
 
 .list__grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 16px;
   width: 100%;
 }
@@ -1456,4 +1513,26 @@ body {
   background-color: white;
   display: block;
   margin: 40px auto;
+}
+
+.noFrame {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+.noFrame .container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.noFrame .container .subTitle {
+  text-align: center;
+}
+.noFrame .container button {
+  margin-top: 40px;
+}
+.noFrame .container button a {
+  color: white;
 }/*# sourceMappingURL=style.css.map */

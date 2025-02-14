@@ -25,6 +25,8 @@ urlpatterns = [
     path('notifications/', include('notifications.urls', namespace='notifications')),  # 通知機能を分離
     path('employee/<int:employee_id>/', views.employee_detail, name='employee_detail'),
     path("__reload__/", include("django_browser_reload.urls")),  # ここを追加
+    path('accounts/', include('accounts.urls')),  # 追加
+
 ]
 
 from django.conf import settings

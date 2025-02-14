@@ -31,4 +31,4 @@ class Product(models.Model):
     custom_fields = models.JSONField(default=dict, blank=True)  # カスタムフィールド
 
     def __str__(self):
-        return self.name    
+        return self.name

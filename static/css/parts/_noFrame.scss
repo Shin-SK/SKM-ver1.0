@@ -1,0 +1,20 @@
+.noFrame{
+    height: 100vh;
+    @include flex();
+    margin-bottom: 0;
+    .container{
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        .subTitle{
+            text-align: center;
+        }
+        button{
+            margin-top: 40px;
+            a{
+                color: white;
+            }
+        }
+    }
+
+}

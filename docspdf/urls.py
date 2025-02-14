@@ -12,4 +12,5 @@ urlpatterns = [
     path('invoice_confirm/<int:pk>/', views.invoice_confirm, name='invoice_confirm'),
     path('invoice_pdf/<int:pk>/', views.invoice_pdf, name='invoice_pdf'),
     path('edit_invoice/<int:pk>/', views.edit_invoice, name='edit_invoice'),
+    path('invoice_preview/<int:pk>/', views.invoice_preview, name='invoice_preview'),
 ]

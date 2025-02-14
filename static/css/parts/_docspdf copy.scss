@@ -1,0 +1,229 @@
+.docspdf{
+    &__grid{
+        margin-top: 40px;
+        .area {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 40px;
+            align-items: center;
+            .image{
+                .adminUser{
+                    text-align: center;
+                    margin-top: 4px;
+                    @include fs(10);
+                }
+            }
+        }
+        .head{
+            font-weight: bold;
+            @include fs(10);
+            margin-bottom: -16px;
+        }
+        .value{
+            margin-top: 16px;
+            .button{
+                @include flex();
+                justify-content: flex-start;
+                gap: 16px;
+                >button{
+                    background-color: unset;
+                    border-radius: unset;
+                    width: auto;
+                    padding: unset;
+                    color: black;
+                    @include fs(12);
+                }
+                i{
+                    margin-right: 4px;
+                }
+            }
+        }
+    }//grid
+    .submit{
+        margin-top: 40px;
+    }
+
+    &__confirm{
+        .subTitle{
+            text-align: center;
+            margin-top: 16px;
+        }
+        .button{
+            margin: 40px auto;
+        }
+    }
+
+}
+
+.preview{
+    width: 100%;
+    transform: scale(0.4);
+    transform-origin: top center;
+}
+
+
+.printPDF{
+    background-color: white;
+    padding: 80px;
+    aspect-ratio: 1 / 1.414;
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 40px;
+    .mainTitle{
+        margin-bottom: 40px;
+    }
+    .contents-wrap{
+        position: relative;
+        height: 100%;
+    }
+    .grid{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        .text{
+            text-align: right;
+        }
+    }
+    .head{
+        @include fs(20);
+        font-weight: bold;
+    }
+    .bbb{
+        border-bottom: 1px black solid;
+    }
+    .block1{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        height: 350px;
+        margin-bottom: 40px;
+        .left{
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: space-between;
+            .box{
+                flex:1;
+                width: 100%;
+            }
+            .box1{
+                .text{
+                    font-weight: bold;
+                }
+            }
+            p{
+                @include fs(10);
+                margin-top: 8px;
+            }
+        }
+        .right{
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: space-between;
+            .box{
+                flex:1;
+                width: 100%;
+            }
+            .box1{
+                @include fs(10);
+                display: flex;
+                align-items: start;
+                justify-content: flex-end;
+                .grid{
+                    width: 50%;
+                }
+            }
+            .box2{
+                .image{
+                    position: relative;
+                    display: flex;
+                    justify-content: flex-end;
+                    .logo{
+                        max-width: 150px;
+                    }
+                    .seal{
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        z-index: 999;
+                        max-width: 50px;
+                        mix-blend-mode: multiply;
+                    }
+                }
+                .info{
+                    margin-top: 16px;
+                    .text{
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+    .block2{
+        .head{
+            @include fs(14);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* セル幅を固定 */
+        
+            th, td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: left;
+            }
+        
+            th {
+                background-color: #f5f5f5;
+                font-weight: bold;
+                font-size: 10px;
+            }
+        
+            td {
+                font-size: 14px;
+                vertical-align: middle;
+            }
+        
+            /* 列幅を指定 */
+            colgroup col:first-child {
+                width: 50%; /* 品名列 */
+            }
+            colgroup col:nth-child(n+2) {
+                width: calc(50% / 3); /* その他の列を3等分 */
+            }
+        
+            .blank {
+                border: none;
+            }
+        }
+    }// block2
+
+    .block3{
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        bottom: 0;
+        width: 100%;
+        .box1{
+            border: 1px solid #ccc;
+            >div{
+                padding: 4px 16px;
+                @include fs(12);
+            }
+            .label{
+                background-color: #f5f5f5;
+                text-align: center;
+            }
+        }
+        .box2{
+            .text{
+                border-bottom: 1px solid #ccc;
+                @include fs(12);
+                padding-bottom: 4px;
+            }
+        }
+    }
+}

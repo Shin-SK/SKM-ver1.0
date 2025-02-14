@@ -1,0 +1,211 @@
+
+@page{
+    margin: 0;
+}
+
+.printPDF{
+    width: 190mm;
+    height: 277mm;//マージン用
+    padding: 10mm 0mm;
+    margin: auto 10mm;
+    position: relative;
+    background-color: white;
+    @font-face {
+        font-family: 'pdfGosic';
+        src: url('../../static/fonts/NotoSansJP-Medium.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    font-family: 'pdfGosic', sans-serif;
+    font-size: 12px;
+
+    header{
+        height: 8mm;
+        margin-bottom: 10mm;
+    }
+    .mainTitle{
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        font-weight: 800;
+        display: block;
+    }
+    .contents-wrap{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 259mm;
+    }
+    .grid{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        .text{
+            text-align: right;
+        }
+    }
+
+    .head{
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .bbb{
+        border-bottom: 1px black solid;
+    }
+    .block1{
+        height: 65mm;
+        &.grid{
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .left{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .flexwrap{
+                &.ue{
+                    .box{
+                        margin-bottom: 24px;
+                        &:last-of-type{
+                            margin-bottom: unset;
+                        }
+                    }
+                }
+            }
+            .box{
+                width: 100%;
+            }
+            .box1{
+                .text{
+                    font-weight: bold;
+                }
+            }
+            .box2{
+                .grid{
+                    border-bottom: 1px black solid;
+                }
+            }
+            p{
+                font-size: 10px;
+                margin-top: 8px;
+            }
+            .box4{
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                .grid{
+                    width: 100%;
+                    border-bottom: 1px black dotted;
+                }
+            }
+        }
+        .right{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .box1{
+                font-size: 10px;
+                position: relative;
+                height: 35px;
+                .grid{
+                    width: 50%;
+                    position: absolute;
+                    height: auto;
+                    right: 0;
+                }
+            }
+            .box2{
+                .image{
+                    position: relative;
+                    height: 30mm;
+                    .logo{
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        max-height: 30mm;
+                    }
+                    .seal{
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        z-index: 999;
+                        max-width: 50px;
+                        mix-blend-mode: multiply;
+                        max-height: 10mm;
+                    }
+                }
+                .info{
+                    margin-top: 16px;
+                    .text{
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+    .block2{
+        .head{
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* セル幅を固定 */
+            th, td {
+                border: 1px solid #ccc;
+                padding: 4px;
+                text-align: left;
+            }
+        
+            th {
+                background-color: #f5f5f5;
+                font-weight: bold;
+                font-size: 10px;
+            }
+        
+            td {
+                font-size: 12px;
+                vertical-align: middle;
+            }
+        
+            /* 列幅を指定 */
+            colgroup col:first-child {
+                width: 50%; /* 品名列 */
+            }
+            colgroup col:nth-child(n+2) {
+                width: calc(50% / 3); /* その他の列を3等分 */
+            }
+            .blank {
+                border: none;
+            }
+        }
+    }// block2
+
+    footer{
+        .block3{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            .box1{
+                .caution{
+                    font-size: 10px;
+                    margin-bottom: 4px;
+                }
+                .wrap{
+                    border: 1px solid #ccc;
+                    >div{
+                        padding: 4px 16px;
+                        font-size: 10px;
+                    }
+                    .label{
+                        background-color: #f5f5f5;
+                        text-align: center;
+                    }
+                    .text{
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
+}

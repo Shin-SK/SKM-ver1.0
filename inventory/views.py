@@ -48,30 +48,27 @@ from django.http import HttpResponse
 @user_passes_test(lambda u: u.is_staff)
 def export_inventory_csv(request):
     """
-    在庫データをCSV形式でエクスポート
+    在庫データをCSV形式でエクスポート（image_url はファイル名だけ）
     """
-    # HTTPレスポンスの設定
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="inventory.csv"'
 
-    # CSVライターを作成
     writer = csv.writer(response)
-    # ヘッダー行
-    writer.writerow(['ID', '商品名', '在庫数', '商品コード', '備考', '画像URL'])
+    writer.writerow(["id", "product_name", "stock_count", "product_code", "notes", "image_filename", "updated_at"])
 
-    # 在庫データを取得
-    items = InventoryItem.objects.all()
-    for item in items:
+    for item in InventoryItem.objects.all():
         writer.writerow([
             item.id,
             item.product_name,
             item.stock_count,
             item.product_code,
             item.notes or '',
-            request.build_absolute_uri(item.image.url) if item.image else '画像なし'
+            item.image.name if item.image else '',  # 画像のファイル名だけ出力
+            item.updated_at.strftime("%Y-%m-%d %H:%M:%S")
         ])
 
     return response
+
 
 import os
 from django.conf import settings
@@ -133,40 +130,43 @@ from .forms import InventoryCSVImportForm
 @user_passes_test(lambda u: u.is_staff)
 def import_inventory_csv(request):
     """
-    在庫データのCSVインポート
+    在庫データのCSVインポート（image_filename のみ指定）
     """
     if request.method == 'POST':
         form = InventoryCSVImportForm(request.POST, request.FILES)
         if form.is_valid():
             csv_file = TextIOWrapper(request.FILES['csv_file'].file, encoding='utf-8')
             reader = csv.DictReader(csv_file)
-            for row in reader:
-                product_name = row.get('商品名')
-                stock_count = row.get('在庫数')
-                product_code = row.get('商品コード')
-                notes = row.get('備考')
 
-                # 空の在庫数があれば0に設定
+            for row in reader:
+                product_name = row.get('product_name')
+                stock_count = row.get('stock_count')
+                product_code = row.get('product_code')
+                notes = row.get('notes')
+                image_filename = row.get('image_filename')  # 画像ファイル名だけ取得
+
+                # 在庫数が空なら0に設定
                 stock_count = int(stock_count) if stock_count else 0
 
-                # すでに同じproduct_codeが存在するか確認
+                # 画像のパスをセット（存在しなければNone）
+                image_path = f"inventory_images/{image_filename}" if image_filename else None
+                if image_path and not os.path.exists(os.path.join(settings.MEDIA_ROOT, image_path)):
+                    image_path = None  # ファイルが存在しない場合はNoneにする
+
+                # 既存の商品があればスキップまたは更新する処理
                 if InventoryItem.objects.filter(product_code=product_code).exists():
-                    # 既存の商品があればスキップまたは更新する処理
                     continue  # 重複するproduct_codeがあればスキップ
-                    # もし更新する場合は以下のように変更できます
-                    # item = InventoryItem.objects.get(product_code=product_code)
-                    # item.stock_count = stock_count
-                    # item.save()
                 else:
-                    # データベースに保存（追記モード）
+                    # データベースに保存（画像は存在する場合のみセット）
                     InventoryItem.objects.create(
                         product_name=product_name,
                         stock_count=stock_count,
                         product_code=product_code,
-                        notes=notes
+                        notes=notes,
+                        image=image_path if image_path else None  # 画像がある場合のみセット
                     )
 
-            messages.success(request, "CSVデータをインポートしました！")
+            messages.success(request, "CSVデータをインポートしました！（image_filename対応）")
             return redirect('inventory_list')
     else:
         form = InventoryCSVImportForm()

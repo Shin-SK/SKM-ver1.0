@@ -4,14 +4,11 @@
   {% load static %}
   <meta charset="UTF-8">
   <title>{% block title %}PDF{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pdf_style.css' %}">
 </head>
-<body>
-
+<body class="printPDF-body">
+    <div class="printPDF-wrap">
     {% block content %}{% endblock %}
-
-  <footer>
-    <div class="footer">{% block footer %}共通PDFフッター{% endblock %}</div>
-  </footer>
+    </div>
 </body>
 </html>

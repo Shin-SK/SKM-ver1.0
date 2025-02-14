@@ -4,6 +4,7 @@
 
 <div class="invoice docspdf edit">
   <h1>請求書の作成</h1>
+  <a class="link" href="{% url 'invoice_list' %}">請求書一覧</a>
 
   <!-- エラーメッセージの表示 -->
   {% if form_errors %}
@@ -43,6 +44,9 @@
     <div class="mainTitle">請求項目</div>
     {{ formset.management_form }}
     <div class="docspdf__grid">
+      <!-- 独立した追加ボタン -->
+      <button type="button" id="add-row" class="add"><i class="fas fa-plus"></i>項目を追加</button>
+
       <!-- ヘッダー -->
       <div class="area head">
         <div class="cell">品名</div>
@@ -60,8 +64,7 @@
         <div class="cell">{{ form.quantity }}</div>
         <div class="cell">{{ form.unit_price }}</div>
         <div class="cell button">
-          <button type="button" class="delete"><i class="fas fa-pen"></i>削除</button>
-          <button type="button" id="add-row" class="add"><i class="fas fa-plus"></i>項目を追加</button>
+          <button type="button" class="delete-row"><i class="fas fa-pen"></i>削除</button>
         </div>
       </div>
       {% endfor %}

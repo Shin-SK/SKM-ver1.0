@@ -3,6 +3,15 @@
 {% block title %}アカウント認証エラー{% endblock %}
 
 {% block content %}
-<h1>認証エラー</h1>
-<p>リンクが無効か期限切れです。もう一度登録を行ってください。</p>
+
+<section class="login edit">
+    <div class="container">
+        <div class="mainTitle">認証エラー</div>
+        <div class="subTitle">リンクが無効か期限切れです。もう一度登録を行ってください。</div>
+        <button>
+            <a href="{% url 'login' %}">登録画面に進む</a>
+        </button>
+    </div>
+</section>
+
 {% endblock %}

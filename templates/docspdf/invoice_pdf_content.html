@@ -1,41 +1,50 @@
 {% load humanize %}
 
 <div class="docspdf printPDF">
-
-<div class="mainTitle">請求書</div>
+    <header>
+        <div class="mainTitle">請求書</div>
+    </header>
 
 <div class="contents-wrap">
 
-    <div class="block1">
+    <div class="block1 grid">
         <div class="left"><!-- 左 -->
-            <div class="box box1">
-                <div class="name grid bbb">
-                    <div class="head">{{ invoice.customer }}</div>
-                    <div class="text">御中</div>
+            <div class="flexwrap ue">
+                <div class="box box1">
+                    <div class="name grid bbb">
+                        <div class="head">{{ invoice.customer }}</div>
+                        <div class="text">御中</div>
+                    </div>
+                    <div class="adress">{{ invoice.customer.address }}</div>
                 </div>
-                <div class="adress">{{ invoice.customer.address }}</div>
-            </div>
-            <div class="box box2">
-                <div class="grid">
-                    <div class="label">案件名</div>
-                    <div class="text">{{ invoice.project_name }}</div>
+                <div class="box box2">
+                    <div class="grid">
+                        <div class="label head">案件名</div>
+                        <div class="text head">{{ invoice.project_name }}</div>
+                    </div>
+                    <p>下記の通りご請求申し上げます。</p>
                 </div>
-                <p>下記の通りご請求申し上げます。</p>
-            </div>
-            <div class="box box3">
-                <div class="grid bbb">
-                    <div class="label head">合計金額</div>
-                    <div class="text amount head">¥{{ total_amount|intcomma }}</div>
+                <div class="box box3">
+                    <div class="grid bbb">
+                        <div class="label head">合計金額</div>
+                        <div class="text amount head">¥{{ total_with_tax|intcomma }}</div>
+                    </div>
                 </div>
             </div>
-            <div class="box box4">
-                <div class="grid">
-                    <div class="label">納期</div>
-                    <div class="text">{{ invoice.closing_date }}</div> <!-- 納期 -->
-                    <div class="label">締め日</div>
-                    <div class="text">{{ invoice.closing_date }}</div> <!-- 締め日 -->
-                    <div class="label">請求日</div>
-                    <div class="text">{{ invoice.payment_due_date }}</div> <!-- 請求日 -->
+            <div class="flexwrap">
+                <div class="box box4">
+                    <div class="grid">
+                        <div class="label">納期</div>
+                        <div class="text">{{ invoice.closing_date }}</div> <!-- 納期 -->
+                    </div>
+                    <div class="grid">
+                        <div class="label">締め日</div>
+                        <div class="text">{{ invoice.closing_date }}</div> <!-- 締め日 -->
+                    </div>
+                    <div class="grid">
+                        <div class="label">請求日</div>
+                        <div class="text">{{ invoice.payment_due_date }}</div> <!-- 請求日 -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,14 +59,14 @@
             </div>
             <div class="box box2">
                 <div class="image">
-                    <img class="logo" src="{{ logo_path }}" alt="会社ロゴ">
-                    <img class="seal" src="{{ seal_path }}" alt="会社印鑑">
+                    <img class="logo" src="{{ company.logo_url }}" alt="会社ロゴ">
+                    <img class="seal" src="{{ company.seal_url }}" alt="会社印鑑">
                 </div> <!-- 弊社ロゴ -->
                 <div class="info">
                     <div class="text">{{ company.name }}</div> <!-- 弊社名 -->
                     <div class="text">{{ company.address }}</div> <!-- 弊社住所 -->
                     <div class="text">{{ company.phone }}</div> <!-- 弊社電話番号 -->
-                    <div class="text">{{ invoice.contact_name }}</div> <!-- 担当者名 -->
+                    <div class="text">担当者：{{ user.first_name }} {{ user.last_name }}</div> <!-- 担当者名 -->
                 </div>
             </div>
         </div>
@@ -83,15 +92,17 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- 各アイテム -->
-                {% for item in items %}
-                <tr>
-                    <td>{{ item.item_name }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>¥{{ item.unit_price|intcomma }}</td>
-                    <td>¥{{ item.subtotal|intcomma }}</td>
-                </tr>
-                {% endfor %}
+                
+            <!-- 各アイテム -->
+            {% for item in items %}
+            <tr>
+                <td>{{ item.item_name|default:"&nbsp;" }}</td>
+                <td>{{ item.quantity|default:"&nbsp;" }}</td>
+                <td>{% if item.unit_price %}¥{{ item.unit_price|intcomma }}{% else %}&nbsp;{% endif %}</td>
+                <td>{% if item.subtotal %}¥{{ item.subtotal|intcomma }}{% else %}&nbsp;{% endif %}</td>
+            </tr>
+            {% endfor %}
+
 
                 <!-- 小計、消費税、合計 -->
                 <tr>
@@ -116,16 +127,22 @@
         </table>
     </div>
 
-    <div class="block3">
-        <div class="box1">
-            <div class="label">振込先</div>
-            <div class="text">{{ company.bank_details }}</div> <!-- 銀行口座 -->
+    <footer>
+        <div class="block3">
+            <div class="box1">
+                <p class="caution">[備考]振込手数料は、お客様にてご負担願います。</p>
+                <div class="wrap">
+                    <div class="label">振込先</div>
+                    <div class="text">{{ company.bank_details }}</div> <!-- 銀行口座 -->
+                </div>
+            </div>
         </div>
-        <div class="box2">
-            <div class="text">担当者：{{ user.first_name }} {{ user.last_name }}</div>
-        </div>
-    </div>
+    </footer>
+    
 
 </div><!-- contents-wrap -->
+
+
+
 
 </div><!-- end -->

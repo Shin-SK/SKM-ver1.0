@@ -1,33 +1,81 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>請求書の修正</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
 
-    <h2>請求項目</h2>
-    {{ formset.management_form }}
-    <table>
-      <thead>
-        <tr>
-          <th>品名</th>
-          <th>数量</th>
-          <th>単価</th>
-          <th>削除</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for form in formset %}
-          <tr>
-            <td>{{ form.item_name }}</td>
-            <td>{{ form.quantity }}</td>
-            <td>{{ form.unit_price }}</td>
-            <td>{{ form.DELETE }}</td>
-          </tr>
+<div class="invoice docspdf edit">
+  <h1>請求書の修正</h1>
+  <a class="link" href="{% url 'invoice_list' %}">請求書一覧</a>
+
+  <!-- エラーメッセージの表示 -->
+  {% if form_errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for field, errors in form_errors.items %}
+          <li>{{ field }}: {{ errors }}</li>
         {% endfor %}
-      </tbody>
-    </table>
-    <button type="submit" class="btn btn-primary">保存</button>
+      </ul>
+    </div>
+  {% endif %}
+
+  {% if formset_errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in formset_errors.values %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <form method="post" class="form">
+    {% csrf_token %}
+    <div class="form__wrap">
+      {% for field in form %}
+      <div class="box">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}
+          <small class="text-danger">{{ field.errors }}</small>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="mainTitle">請求もり項目</div>
+    {{ formset.management_form }}
+    <div class="docspdf__grid">
+      <!-- 独立した追加ボタン -->
+      <button type="button" id="add-row" class="add"><i class="fas fa-plus"></i>項目を追加</button>
+      
+      <!-- ヘッダー -->
+      <div class="area head">
+        <div class="cell">品名</div>
+        <div class="cell">数量</div>
+        <div class="cell">単価</div>
+        <div class="cell">削除</div>
+      </div>
+    
+      <!-- レコードをループで表示 -->
+      {% for form in formset %}
+      <div class="area value">
+        {{ form.id }}
+        <div class="cell">{{ form.item_name }}</div>
+        <div class="cell">{{ form.quantity }}</div>
+        <div class="cell">{{ form.unit_price }}</div>
+        <div class="cell button">
+          {% if form.DELETE %}
+            {{ form.DELETE }}
+          {% else %}
+            <button type="button" class="delete-row"><i class="fas fa-pen"></i>削除</button>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="submit">
+      <button type="submit">保存</button>
+    </div>
   </form>
+</div>
 {% endblock %}

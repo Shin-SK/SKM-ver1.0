@@ -2,31 +2,41 @@
 {% load humanize %}
 
 {% block content %}
-  <h1>見積書一覧</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>番号</th>
-        <th>顧客</th>
-        <th>作成者</th>
-        <th>作成日</th>
-        <th>合計金額</th>
-        <th>ダウンロード</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for quotation in quotations %}
-        <tr>
-          <td>{{ quotation.quotation_number }}</td>
-          <td>{{ quotation.customer }}</td>
-          <td>{{ quotation.creator }}</td>
-          <td>{{ quotation.created_at }}</td>
-          <td><p style="text-align: right;"><strong>合計金額:</strong> ¥{{ total_amount }}</p></td>
-          <td><a href="{% url 'quotation_pdf' quotation.pk %}" target="_blank">PDFダウンロード</a></td>
-          
-        </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<div class="quotation list">
+    <div class="mainTitle">見積書一覧</div>
+
+    <div class="create">
+        <a href="{% url 'create_quotation' %}"><i class="fas fa-plus"></i>見積書を作成</a>
+    </div>
+
+    <div class="list__grid">
+        <!-- ヘッダー -->
+        <div class="area head">
+            <div class="cell">見積書番号</div>
+            <div class="cell">案件名</div>
+            <div class="cell">顧客</div>
+            <div class="cell">作成者</div>
+            <div class="cell">作成日</div>
+            <div class="cell">詳細</div>
+            <div class="cell">PDF</div>
+        </div>
+
+        <!-- レコードをループで表示 -->
+        {% for quotation in quotations %}
+        <div class="area value">
+            <div class="cell">{{ quotation.quotation_number }}</div>
+            <div class="cell">{{ quotation.project_name }}</div>
+            <div class="cell">{{ quotation.customer }}</div>
+            <div class="cell">{{ quotation.creator }}</div>
+            <div class="cell">{{ quotation.created_at|date:"Y/m/d" }}</div>
+            <div class="cell">
+                <a href="{% url 'quotation_confirm' quotation.pk %}" target="_blank">詳細</a>
+            </div>
+            <div class="cell">
+                <a href="{% url 'quotation_pdf' quotation.pk %}" class="dl"><i class="fas fa-file-download"></i>PDF</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

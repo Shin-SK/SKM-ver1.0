@@ -1,0 +1,324 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-style: normal;
+  text-align: left;
+  zoom: 1;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+table {
+  border-collapse: collapse;
+  font-family: inherit;
+}
+
+h1, h2, h3, h4, h5 {
+  font-size: 100%;
+  font-weight: normal;
+  line-height: 1;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: 16px;
+}
+
+input[type=button], input[type=text], input[type=submit] {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+textarea {
+  resize: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+th, td {
+  border-collapse: collapse;
+}
+
+table th, table td {
+  white-space: nowrap;
+}
+
+ul, ol {
+  list-style-type: none;
+}
+
+img {
+  vertical-align: text-bottom;
+  vertical-align: -webkit-baseline-middle;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: unset;
+  font-weight: unset;
+  line-height: unset;
+}
+
+/* 除算math.divを使うのに必要な記述 */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: clamp(1.4rem, 1.3346938776rem + 0.2040816327vw, 1.6rem);
+}
+body a {
+  color: #0f0f0f;
+}
+body a :hover {
+  transition: 0.5s;
+  -webkit-transition: 0.5s; /* Chrome、Safari用 */
+  -moz-transition: 0.5s; /* Firefox用 */
+  -o-transition: 0.5s; /* Opera用 */
+  opacity: 0.8;
+}
+body img {
+  max-width: 100%;
+  height: auto;
+}
+body .mincho {
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+  font-size: clamp(3rem, 2.9346938776rem + 0.2040816327vw, 3.2rem);
+}
+body section {
+  margin-bottom: 40px;
+  /* 2番目だけ変えたい */
+}
+body section::before { /* アンカーズレ調整 */
+  content: "";
+  display: block;
+  height: 100px; /* 調整したい高さ（固定ヘッダーの高さ） */
+  margin-top: -100px; /* heightと同じ分のネガティブマージン */
+  visibility: hidden;
+}
+body section:nth-of-type(2)::before {
+  height: unset;
+  margin-top: unset;
+}
+
+/* 非表示状態 */
+.inactive {
+  display: none;
+  opacity: 0;
+}
+
+/* 表示状態 */
+.active {
+  display: block;
+  opacity: 1;
+}
+
+body {
+  line-height: normal;
+}
+
+@page {
+  margin: 0;
+}
+.printPDF {
+  width: 190mm;
+  height: 277mm;
+  padding: 10mm 0mm;
+  margin: auto 10mm;
+  position: relative;
+  background-color: white;
+  font-family: "pdfGosic", sans-serif;
+  font-size: 12px;
+}
+@font-face {
+  font-family: "pdfGosic";
+  src: url("../../static/fonts/NotoSansJP-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.printPDF header {
+  height: 8mm;
+  margin-bottom: 10mm;
+}
+.printPDF .mainTitle {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  font-weight: 800;
+  display: block;
+}
+.printPDF .contents-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 259mm;
+}
+.printPDF .grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.printPDF .grid .text {
+  text-align: right;
+}
+.printPDF .head {
+  font-size: 16px;
+  font-weight: bold;
+}
+.printPDF .bbb {
+  border-bottom: 1px black solid;
+}
+.printPDF .block1 {
+  height: 65mm;
+}
+.printPDF .block1.grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.printPDF .block1 .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.printPDF .block1 .left .flexwrap.ue .box {
+  margin-bottom: 24px;
+}
+.printPDF .block1 .left .flexwrap.ue .box:last-of-type {
+  margin-bottom: unset;
+}
+.printPDF .block1 .left .box {
+  width: 100%;
+}
+.printPDF .block1 .left .box1 .text {
+  font-weight: bold;
+}
+.printPDF .block1 .left .box2 .grid {
+  border-bottom: 1px black solid;
+}
+.printPDF .block1 .left p {
+  font-size: 10px;
+  margin-top: 8px;
+}
+.printPDF .block1 .left .box4 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.printPDF .block1 .left .box4 .grid {
+  width: 100%;
+  border-bottom: 1px black dotted;
+}
+.printPDF .block1 .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.printPDF .block1 .right .box1 {
+  font-size: 10px;
+  position: relative;
+  height: 35px;
+}
+.printPDF .block1 .right .box1 .grid {
+  width: 50%;
+  position: absolute;
+  height: auto;
+  right: 0;
+}
+.printPDF .block1 .right .box2 .image {
+  position: relative;
+  height: 30mm;
+}
+.printPDF .block1 .right .box2 .image .logo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-height: 30mm;
+}
+.printPDF .block1 .right .box2 .image .seal {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  max-width: 50px;
+  mix-blend-mode: multiply;
+  max-height: 10mm;
+}
+.printPDF .block1 .right .box2 .info {
+  margin-top: 16px;
+}
+.printPDF .block1 .right .box2 .info .text {
+  text-align: right;
+}
+.printPDF .block2 .head {
+  font-size: 14px;
+}
+.printPDF .block2 table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* セル幅を固定 */
+  /* 列幅を指定 */
+}
+.printPDF .block2 table th, .printPDF .block2 table td {
+  border: 1px solid #ccc;
+  padding: 4px;
+  text-align: left;
+}
+.printPDF .block2 table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  font-size: 10px;
+}
+.printPDF .block2 table td {
+  font-size: 12px;
+  vertical-align: middle;
+}
+.printPDF .block2 table colgroup col:first-child {
+  width: 50%; /* 品名列 */
+}
+.printPDF .block2 table colgroup col:nth-child(n+2) {
+  width: 16.6666666667%; /* その他の列を3等分 */
+}
+.printPDF .block2 table .blank {
+  border: none;
+}
+.printPDF footer .block3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.printPDF footer .block3 .box1 .caution {
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+.printPDF footer .block3 .box1 .wrap {
+  border: 1px solid #ccc;
+}
+.printPDF footer .block3 .box1 .wrap > div {
+  padding: 4px 16px;
+  font-size: 10px;
+}
+.printPDF footer .block3 .box1 .wrap .label {
+  background-color: #f5f5f5;
+  text-align: center;
+}
+.printPDF footer .block3 .box1 .wrap .text {
+  text-align: center;
+}/*# sourceMappingURL=pdf_style.css.map */
