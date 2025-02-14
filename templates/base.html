@@ -24,8 +24,11 @@
                     dashboard
                 </div> -->
                 <div class="logout">
-                    <a href=""><i class="fas fa-sign-out-alt"></i>Logout</a>
-                </div>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit"><i class="fas fa-sign-out-alt"></i>Logout</button>
+                    </form>
+                </div><!-- logout -->
             </div>
         </header>
 

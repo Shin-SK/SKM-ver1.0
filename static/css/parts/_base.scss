@@ -41,6 +41,11 @@ a{
         .logout{
             @include fs(12);
             @include gotham;
+            button{
+                background: unset;
+                border-radius: unset;
+                color: $mc;
+            }
             i{
                 margin-right: 4px;
             }

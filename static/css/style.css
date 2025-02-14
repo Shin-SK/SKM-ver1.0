@@ -466,6 +466,11 @@ a.link {
   font-weight: 800;
   font-style: normal;
 }
+.header__wrap .logout button {
+  background: unset;
+  border-radius: unset;
+  color: #0f0f0f;
+}
 .header__wrap .logout i {
   margin-right: 4px;
 }
