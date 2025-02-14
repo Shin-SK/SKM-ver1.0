@@ -25,7 +25,7 @@
         {% for invoice in invoices %}
         <div class="area value">
             <div class="cell">{{ invoice.invoice_number }}</div>
-            <div class="cell">{{ quotation.project_name }}</div>
+            <div class="cell">{{ invoice.project_name }}</div>
             <div class="cell">{{ invoice.customer }}</div>
             <div class="cell">{{ invoice.creator }}</div>
             <div class="cell">{{ invoice.created_at|date:"Y/m/d" }}</div>
