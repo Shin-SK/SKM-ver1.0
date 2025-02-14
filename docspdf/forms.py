@@ -54,9 +54,18 @@ class QuotationItemForm(forms.ModelForm):
 class InvoiceForm(forms.ModelForm):
     class Meta:
         model = Invoice
-        fields = ['customer', 'invoice_number', 'contact_name', 'attention_to', 'closing_date', 'payment_due_date']
+        fields = [
+            'customer',
+            'invoice_number',
+            'project_name',  # ここを追加
+            'contact_name',
+            'attention_to',
+            'closing_date',
+            'payment_due_date'
+        ]
         widgets = {
             'invoice_number': forms.TextInput(attrs={'placeholder': '例: INV20230101'}),
+            'project_name': forms.TextInput(attrs={'placeholder': '案件名'}),
             'contact_name': forms.TextInput(attrs={'placeholder': '担当者名'}),
             'attention_to': forms.TextInput(attrs={'placeholder': '宛先'}),
             'closing_date': forms.TextInput(attrs={'placeholder': '例: 毎月25日'}),
@@ -65,6 +74,7 @@ class InvoiceForm(forms.ModelForm):
         labels = {
             'customer': '顧客',
             'invoice_number': '請求書番号',
+            'project_name': '案件名',  # ★追加！
             'contact_name': '担当者名',
             'attention_to': '宛先',
             'closing_date': '締め日',
