@@ -175,3 +175,22 @@ def index(request):
 def employee_detail(request, employee_id):
     employee = Employee.objects.get(pk=employee_id)
     return render(request, 'employee_detail.html', {'employee': employee})
+
+
+    from django.shortcuts import render
+
+def preview_error(request, error_code=404):
+    error_messages = {
+        400: ("不正なリクエスト", "申し訳ありません。リクエストに問題があります。"),
+        403: ("アクセス拒否", "申し訳ありません。このページにアクセスする権限がありません。"),
+        404: ("ページが見つかりません", "申し訳ありません。お探しのページは存在しないか、移動した可能性があります。"),
+        500: ("サーバーエラー", "申し訳ありません。サーバー内部で問題が発生しました。しばらくしてから再度お試しください。"),
+    }
+    
+    title, message = error_messages.get(error_code, ("エラー", "予期しないエラーが発生しました。"))
+    
+    return render(request, "error.html", {
+        "error_code": error_code,
+        "error_title": title,
+        "error_message": message,
+    }, status=error_code)

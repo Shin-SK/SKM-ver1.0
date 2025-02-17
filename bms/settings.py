@@ -6,7 +6,6 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-
 # BASE_DIR の設定
 BASE_DIR = Path(__file__).resolve().parent.parent
 

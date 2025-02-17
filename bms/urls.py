@@ -26,11 +26,29 @@ urlpatterns = [
     path('employee/<int:employee_id>/', views.employee_detail, name='employee_detail'),
     path("__reload__/", include("django_browser_reload.urls")),  # ここを追加
     path('accounts/', include('accounts.urls')),  # 追加
-
 ]
 
 from django.conf import settings
 from django.conf.urls.static import static
 
-if settings.DEBUG:
+# 修正：static() を正しく適用
+if settings.DEBUG:  # ローカルでのみ動作
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += [
+        path("preview-error/<int:error_code>/", views.preview_error, name="preview_error"),
+    ]
+
+from django.conf.urls import handler400, handler403, handler404, handler500
+from django.shortcuts import render
+
+def error_view(request, exception=None, error_code=500, error_title="エラー", error_message="予期しないエラーが発生しました。"):
+    return render(request, "error.html", {
+        "error_code": error_code,
+        "error_title": error_title,
+        "error_message": error_message,
+    }, status=error_code)
+
+handler400 = lambda request, exception: error_view(request, exception, 400, "不正なリクエスト", "申し訳ありません。リクエストに問題があります。")
+handler403 = lambda request, exception: error_view(request, exception, 403, "アクセス拒否", "申し訳ありません。このページにアクセスする権限がありません。")
+handler404 = lambda request, exception: error_view(request, exception, 404, "ページが見つかりません", "申し訳ありません。お探しのページは存在しないか、移動した可能性があります。")
+handler500 = lambda request: error_view(request, None, 500, "サーバーエラー", "申し訳ありません。サーバー内部で問題が発生しました。しばらくしてから再度お試しください。")
