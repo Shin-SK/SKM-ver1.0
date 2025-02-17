@@ -5,6 +5,7 @@ from decouple import config  # 追加
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+import logging
 
 # BASE_DIR の設定
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,16 +121,15 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'file': {
-            'level': 'ERROR',  # ERROR 以上のログのみ記録
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/error.log'),  # ファイル名を変更
+        'mail': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
-            'level': 'ERROR',  # ERROR 以上のログのみ
+            'handlers': ['mail'],
+            'level': 'DEBUG',
             'propagate': True,
         },
     },
