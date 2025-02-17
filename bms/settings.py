@@ -146,7 +146,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'sv1416.xserver.jp'  # XserverのSMTPサーバー（契約ごとに異なる）
 EMAIL_PORT = 587  # TLSを使用
 EMAIL_USE_TLS = True
-EMAIL_USE_SSL = True  # これを追加
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # Xserverのメールアドレス
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # メールのパスワード
 
