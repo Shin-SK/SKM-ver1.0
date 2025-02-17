@@ -1,4 +1,20 @@
 {% load static %}
+<!-- SEO用メタタグ -->
+<title>SKM - マネジメントツール</title>
+<meta name="description" content="このツールは業務効率をアップするための便利なWebアプリです。">
+
+<!-- OGP（SNSシェア時の表示）-->
+<meta property="og:type" content="website">
+<meta property="og:title" content="SKM - ビジネス・マネジメントツール">
+<meta property="og:description" content="このツールは業務効率をアップするための便利なWebアプリです。">
+<meta property="og:url" content="{% url 'index' %}">  <!-- 固定URL -->
+<meta property="og:image" content="{% static 'image/ogp-default.webp' %}">  <!-- OGP画像のURL -->
+
+<!-- Twitter用メタタグ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SKM - ビジネス・マネジメントツール">
+<meta name="twitter:description" content="このツールは業務効率をアップするための便利なWebアプリです。">
+<meta name="twitter:image" content="{% static 'image/ogp-default.webp' %}">
 
 <script src="https://kit.fontawesome.com/66f29bbc2b.js" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
