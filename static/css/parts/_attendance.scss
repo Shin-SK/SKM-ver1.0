@@ -2,21 +2,10 @@
 
 
 .attendance{
-    &__grid{
-        margin-top: 40px;
-        display: grid;
+    .list__grid{
         grid-template-columns: repeat(3, minmax(150px, max-content));
-        gap: 16px;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        .area{
-            display: contents;
-            &.head{
-                .cell{
-                    font-weight: bold;
-                }
-            }
+        @include sp{
+            grid-template-columns: 1fr;
         }
     }
 }

@@ -482,6 +482,11 @@ a.link {
   min-height: 100vh;
   position: relative;
 }
+@media screen and (max-width: 576px) {
+  .contents-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
 
 main {
   background-color: whitesmoke;
@@ -492,12 +497,23 @@ main.main-unset {
   border-top-left-radius: unset;
   padding: unset;
 }
+@media screen and (max-width: 576px) {
+  main {
+    padding: unset;
+    padding-top: 16px;
+  }
+}
 
 aside {
   padding: 40px 16px 16px 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+@media screen and (max-width: 576px) {
+  aside {
+    display: none;
+  }
 }
 aside .menu li {
   font-weight: bold;
@@ -576,6 +592,16 @@ h1 {
 .list-menu.three {
   grid-template-columns: 1fr 1fr 1fr;
 }
+@media screen and (max-width: 576px) {
+  .list-menu.three {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 576px) {
+  .list-menu {
+    grid-template-columns: 1fr;
+  }
+}
 .list-menu .box {
   display: contents;
 }
@@ -588,6 +614,42 @@ h1 {
 }
 .list-menu .box a i {
   margin-right: 4px;
+}
+
+.drawer-hamburger {
+  width: 30px;
+  padding: 15px;
+}
+
+.drawer--right.drawer-open .drawer-hamburger {
+  right: 70%;
+}
+
+.drawer--right .drawer-nav {
+  right: -70%;
+}
+
+.drawer-nav {
+  width: 70%;
+}
+
+.drawer-open .header {
+  background-color: rgba(0, 0, 0, 0);
+}
+.drawer-open .header .logo {
+  opacity: 0.1;
+}
+
+.drawer-menu li {
+  padding: 16px;
+  border-bottom: 1px black dotted;
+}
+.drawer-menu li i {
+  margin-right: 4px;
+}
+
+.container-sm {
+  padding-bottom: 120px;
 }
 
 /* 除算math.divを使うのに必要な記述 */
@@ -929,6 +991,12 @@ body {
   align-items: center;
   margin-bottom: 80px;
 }
+@media screen and (max-width: 576px) {
+  .edit .form__wrap {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
 .edit .form__wrap .box {
   display: contents;
 }
@@ -936,6 +1004,11 @@ body {
   text-align: right;
   font-size: clamp(1.2rem, 1.1346938776rem + 0.2040816327vw, 1.4rem);
   font-weight: bold;
+}
+@media screen and (max-width: 576px) {
+  .edit .form__wrap .box label {
+    text-align: left;
+  }
 }
 .edit button {
   padding: 8px;
@@ -1020,6 +1093,12 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   margin-bottom: 40px;
+}
+@media screen and (max-width: 576px) {
+  .inventory .search .wrap {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 .inventory .search a.allpost {
   display: flex;
@@ -1202,20 +1281,13 @@ body {
   line-height: normal;
 }
 
-.attendance__grid {
-  margin-top: 40px;
-  display: grid;
+.attendance .list__grid {
   grid-template-columns: repeat(3, minmax(150px, max-content));
-  gap: 16px;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
 }
-.attendance__grid .area {
-  display: contents;
-}
-.attendance__grid .area.head .cell {
-  font-weight: bold;
+@media screen and (max-width: 576px) {
+  .attendance .list__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .docspdf__grid {
@@ -1237,6 +1309,12 @@ body {
   gap: 40px;
   align-items: center;
 }
+@media screen and (max-width: 576px) {
+  .docspdf__grid .area {
+    grid-template-columns: 50% repeat(2, 1fr) 50px;
+    gap: 8px;
+  }
+}
 .docspdf__grid .area .image .adminUser {
   text-align: center;
   margin-top: 4px;
@@ -1246,6 +1324,11 @@ body {
   font-weight: bold;
   font-size: clamp(1rem, 0.9346938776rem + 0.2040816327vw, 1.2rem);
   margin-bottom: -16px;
+}
+@media screen and (max-width: 576px) {
+  .docspdf__grid .head {
+    display: none;
+  }
 }
 .docspdf__grid .value {
   margin-top: 16px;
@@ -1497,8 +1580,21 @@ body {
   gap: 16px;
   width: 100%;
 }
+@media screen and (max-width: 576px) {
+  .list__grid {
+    grid-template-columns: 1fr;
+    background-color: white;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+}
 .list__grid .area {
   display: contents;
+}
+@media screen and (max-width: 576px) {
+  .list__grid .area.head {
+    display: none;
+  }
 }
 .list__grid .area.head .cell {
   font-weight: bold;
@@ -1510,6 +1606,26 @@ body {
 }
 .list__grid .area.value .dl i {
   margin-right: 4px;
+}
+@media screen and (max-width: 576px) {
+  .list__grid .area.value .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px dotted whitesmoke;
+  }
+  .list__grid .area.value .cell::before {
+    content: attr(data-label) "";
+    background-color: whitesmoke;
+    padding: 4px;
+    font-size: clamp(1rem, 0.9346938776rem + 0.2040816327vw, 1.2rem);
+    margin-right: 8px;
+  }
+}
+.list__grid .area.value a.delete::before {
+  content: "|";
+  padding-right: 4px;
 }
 .list .create a {
   padding: 8px;

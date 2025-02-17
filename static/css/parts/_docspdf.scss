@@ -16,6 +16,10 @@
             grid-template-columns: repeat(3,1fr) 50px;
             gap: 40px;
             align-items: center;
+            @include sp{
+                grid-template-columns: 50% repeat(2, 1fr) 50px;
+                gap: 8px;
+            }
             .image{
                 .adminUser{
                     text-align: center;
@@ -28,6 +32,9 @@
             font-weight: bold;
             @include fs(10);
             margin-bottom: -16px;
+            @include sp{
+                display: none;
+            }
         }
         .value{
             margin-top: 16px;

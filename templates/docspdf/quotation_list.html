@@ -20,23 +20,24 @@
             <div class="cell">詳細</div>
             <div class="cell">PDF</div>
         </div>
-
+    
         <!-- レコードをループで表示 -->
         {% for quotation in quotations %}
         <div class="area value">
-            <div class="cell">{{ quotation.quotation_number }}</div>
-            <div class="cell">{{ quotation.project_name }}</div>
-            <div class="cell">{{ quotation.customer }}</div>
-            <div class="cell">{{ quotation.creator }}</div>
-            <div class="cell">{{ quotation.created_at|date:"Y/m/d" }}</div>
-            <div class="cell">
+            <div class="cell" data-label="見積書番号">{{ quotation.quotation_number }}</div>
+            <div class="cell" data-label="案件名">{{ quotation.project_name }}</div>
+            <div class="cell" data-label="顧客">{{ quotation.customer }}</div>
+            <div class="cell" data-label="作成者">{{ quotation.creator }}</div>
+            <div class="cell" data-label="作成日">{{ quotation.created_at|date:"Y/m/d" }}</div>
+            <div class="cell" data-label="詳細">
                 <a href="{% url 'quotation_confirm' quotation.pk %}" target="_blank">詳細</a>
             </div>
-            <div class="cell">
+            <div class="cell" data-label="PDF">
                 <a href="{% url 'quotation_pdf' quotation.pk %}" class="dl"><i class="fas fa-file-download"></i>PDF</a>
             </div>
         </div>
         {% endfor %}
     </div>
+    
 </div>
 {% endblock %}

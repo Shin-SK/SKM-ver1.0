@@ -60,6 +60,9 @@ a{
     padding-top: $headerHight;
     min-height: 100vh;
     position: relative;
+    @include sp{
+        grid-template-columns: 1fr;
+    }
 }
 
 main{
@@ -70,6 +73,10 @@ main{
         border-top-left-radius: unset;
         padding: unset;
     }
+    @include sp{
+        padding:unset;
+        padding-top: 16px;
+    }
 }
 
 aside{
@@ -77,6 +84,9 @@ aside{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @include sp{
+        display: none;
+    }
     .menu{
         li{
             font-weight: bold;
@@ -157,6 +167,12 @@ h1{
     margin-top: 40px;
     &.three{
         grid-template-columns: 1fr 1fr 1fr;
+        @include sp{
+            grid-template-columns: 1fr;
+        }
+    }
+    @include sp{
+        grid-template-columns: 1fr;
     }
     .box{
         display: contents;
@@ -171,4 +187,43 @@ h1{
     }
 }
 
+.drawer-hamburger{
+    width: 30px;
+    padding: 15px;
+}
 
+.drawer--right.drawer-open .drawer-hamburger{
+    right: 70%;
+}
+
+.drawer--right .drawer-nav{
+    right: -70%;
+}
+
+.drawer-nav{
+    width: 70%;
+}
+
+.drawer-open{
+    .header{
+        background-color: rgba(0, 0, 0, 0);
+        .logo{
+            opacity: 0.1;
+        }
+    }
+}
+
+.drawer-menu{
+    li{
+        padding: 16px;
+        border-bottom: 1px black dotted;
+        i{
+            margin-right: 4px;
+        }
+    }
+}
+
+
+.container-sm{
+    padding-bottom: 120px;
+}

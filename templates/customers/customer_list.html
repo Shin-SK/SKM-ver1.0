@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="customer__grid">
+    <div class="list__grid">
         <div class="area head">
             <div class="cell">姓</div>
             <div class="cell">名</div>
@@ -30,21 +30,22 @@
     
         {% for customer in customers %}
         <div class="area value">
-            <div class="cell">{{ customer.first_name }}</div>
-            <div class="cell">{{ customer.last_name }}</div>
-            <div class="cell">{{ customer.email }}</div>
-            <div class="cell">{{ customer.phone_number }}</div>
-            <div class="cell">{{ customer.company_name }}</div>
-            <div class="cell">{{ customer.address }}</div>
-            <div class="cell">
+            <div class="cell" data-label="姓">{{ customer.first_name }}</div>
+            <div class="cell" data-label="名">{{ customer.last_name }}</div>
+            <div class="cell" data-label="メールアドレス">{{ customer.email }}</div>
+            <div class="cell" data-label="電話番号">{{ customer.phone_number }}</div>
+            <div class="cell" data-label="会社名">{{ customer.company_name }}</div>
+            <div class="cell" data-label="住所">{{ customer.address }}</div>
+            <div class="cell" data-label="操作">
                 <a href="{% url 'edit_customer' customer.id %}">編集</a>
                 {% if user.is_staff %}
-                <a href="{% url 'delete_customer' customer.id %}" onclick="return confirm('本当に削除しますか？');">削除</a>
+                <a class="delete" href="{% url 'delete_customer' customer.id %}" onclick="return confirm('本当に削除しますか？');">削除</a>
                 {% endif %}
             </div>
         </div>
         {% endfor %}
     </div>
+    
 
 </div><!-- customer -->
 {% endblock %}

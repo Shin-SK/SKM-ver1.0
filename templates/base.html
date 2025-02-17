@@ -23,34 +23,36 @@
                 <!-- <div class="text">
                     dashboard
                 </div> -->
-                <div class="logout">
+                <div class="logout d-none d-sm-block">
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
                         <button type="submit"><i class="fas fa-sign-out-alt"></i>Logout</button>
                     </form>
                 </div><!-- logout -->
             </div>
+            
+            <nav id="navigation" class="nav d-sm-none d-block">
+                <!-- sp -->
+                <div class="nav__wrap">
+                    <button type="button" class="drawer-toggle drawer-hamburger">
+                        <span class="sr-only">toggle navigation</span>
+                        <span class="drawer-hamburger-icon"></span>
+                    </button>
+                    <div class="drawer-nav drawer-close" role="navigation">
+                        <ul class="drawer-menu">
+                            <!-- <div class="logo">
+                                <a href="{% url 'index' %}">
+                                    <img src="{% static 'image/logo-bk.png' %}">
+                                </a>
+                            </div> -->
+                            {% include 'common/parts/nav-menu.html' %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+    
         </header>
 
-        <nav id="navigation" class="nav d-sp-block d-none">
-            <!-- sp -->
-            <div class="nav__wrap">
-                <button type="button" class="drawer-toggle drawer-hamburger">
-                    <span class="sr-only">toggle navigation</span>
-                    <span class="drawer-hamburger-icon"></span>
-                </button>
-                <div class="drawer-nav drawer-close" role="navigation">
-                    <ul class="drawer-menu">
-                        <div class="logo">
-                            <a href="{% url 'index' %}">
-                                <img src="{% static 'image/logo-bk.png' %}">
-                            </a>
-                        </div>
-                        {% include 'common/parts/nav-menu.html' %}
-                    </ul>
-                </div>
-            </div>
-        </nav>
 
     <div class="contents-wrapper">
 
@@ -70,9 +72,12 @@
         </aside>
 
         <main>
+            <div class="container-sm">
+
             {% block content %}
             {% endblock %}
-            
+
+            </div>
         </main>
 
         <footer class="footer">

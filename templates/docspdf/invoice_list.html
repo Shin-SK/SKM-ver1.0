@@ -24,15 +24,15 @@
         <!-- レコードをループで表示 -->
         {% for invoice in invoices %}
         <div class="area value">
-            <div class="cell">{{ invoice.invoice_number }}</div>
-            <div class="cell">{{ invoice.project_name }}</div>
-            <div class="cell">{{ invoice.customer }}</div>
-            <div class="cell">{{ invoice.creator }}</div>
-            <div class="cell">{{ invoice.created_at|date:"Y/m/d" }}</div>
-            <div class="cell">
+            <div class="cell" data-label="請求書番号">{{ invoice.invoice_number }}</div>
+            <div class="cell" data-label="案件名">{{ invoice.project_name }}</div>
+            <div class="cell" data-label="顧客">{{ invoice.customer }}</div>
+            <div class="cell" data-label="作成者">{{ invoice.creator }}</div>
+            <div class="cell" data-label="作成日">{{ invoice.created_at|date:"Y/m/d" }}</div>
+            <div class="cell" data-label="詳細">
                 <a href="{% url 'invoice_confirm' invoice.pk %}" target="_blank">詳細</a>
             </div>
-            <div class="cell">
+            <div class="cell" data-label="PDF">
                 <a href="{% url 'invoice_pdf' invoice.pk %}" class="dl"><i class="fas fa-file-download"></i>PDF</a>
             </div>
         </div>

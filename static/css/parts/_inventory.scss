@@ -8,6 +8,10 @@
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             margin-bottom: 40px;
+            @include sp{
+                grid-template-columns: 1fr;
+                gap: 16px
+            }
         }
         a.allpost{
             @include flex();

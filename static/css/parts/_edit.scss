@@ -10,12 +10,19 @@
             gap: 40px 16px;
             align-items: center;
             margin-bottom: 80px;
+            @include sp{
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
             .box{
                 display: contents;
                 label{
                     text-align: right;
                     @include fs(12);
                     font-weight: bold;
+                    @include sp{
+                        text-align: left;
+                    }
                 }
             }
         }
