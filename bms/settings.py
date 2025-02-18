@@ -122,18 +122,19 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'mail': {
-            'level': 'DEBUG',
+            'level': 'INFO',  # DEBUG -> INFO に変更
             'class': 'logging.StreamHandler',
         },
     },
     'loggers': {
         'django': {
             'handlers': ['mail'],
-            'level': 'DEBUG',
+            'level': 'INFO',  # DEBUG -> INFO に変更
             'propagate': True,
         },
     },
 }
+
 
 # logsディレクトリ作成
 log_dir = BASE_DIR / 'logs'
@@ -141,19 +142,15 @@ os.makedirs(log_dir, exist_ok=True)
 
 LANGUAGE_CODE = 'ja'
 
-# メール設定（Xserver SMTP）
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'sv1416.xserver.jp'  # XserverのSMTPサーバー（契約ごとに異なる）
-EMAIL_PORT = 587  # TLSを使用
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # Xserverのメールアドレス
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # メールのパスワード
+# メール設定（MailGun api）
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+ANYMAIL = {
+    "MAILGUN_API_KEY": config("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": config("MAILGUN_SENDER_DOMAIN"),
+}
 
-ADMIN_EXCLUDE_APPS = ["bms", "core", "customers"]
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
 
-# ここを修正！
-DEFAULT_FROM_EMAIL = 'info@sk-tokyo.net'  # 送信元の正しいアドレス
-SERVER_EMAIL = 'info@sk-tokyo.net'  # 管理者向けエラー通知も同じアドレスにする
 
 
 # Cloudinary 設定を `config()` に統一
