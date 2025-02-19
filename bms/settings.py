@@ -23,7 +23,13 @@ SITE_DOMAIN = config("SITE_DOMAIN", default="skm.sk-tokyo.net")
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 ACCOUNT_EMAIL_CONFIRMATION_URL = "{protocol}://{domain}/activate/{uid}/{token}/"
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
 ACCOUNT_ADAPTER = 'accounts.adapter.MyAccountAdapter'
+
+
+
 
 # アプリケーション
 INSTALLED_APPS = [
