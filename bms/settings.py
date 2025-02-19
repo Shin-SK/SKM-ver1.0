@@ -143,14 +143,14 @@ os.makedirs(log_dir, exist_ok=True)
 LANGUAGE_CODE = 'ja'
 
 # メール設定（MailGun api）
-EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-ANYMAIL = {
-    "MAILGUN_API_KEY": config("MAILGUN_API_KEY"),
-    "MAILGUN_SENDER_DOMAIN": config("MAILGUN_SENDER_DOMAIN"),
-}
 
-DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
-
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = config("MAILGUN_SMTP_SERVER", default="smtp.mailgun.org")
+EMAIL_PORT = config("MAILGUN_SMTP_PORT", default=587, cast=int)
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config("MAILGUN_SMTP_LOGIN")  # 例: postmaster@skm.sk-tokyo.net
+EMAIL_HOST_PASSWORD = config("MAILGUN_SMTP_PASSWORD")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="info@skm.sk-tokyo.net")
 
 
 # Cloudinary 設定を `config()` に統一
