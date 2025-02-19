@@ -19,6 +19,9 @@ DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
 # 許可するホスト
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1,localhost,skm-sk-tokyo-net.herokuapp.com,skm.sk-tokyo.net,skm-sk-tokyo-net-a3a278cbede9.herokuapp.com').split(',')
 
+SITE_DOMAIN = config("SITE_DOMAIN", default="skm.sk-tokyo.net")
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+
 # アプリケーション
 INSTALLED_APPS = [
     'django.contrib.admin',
