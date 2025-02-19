@@ -23,6 +23,8 @@ SITE_DOMAIN = config("SITE_DOMAIN", default="skm.sk-tokyo.net")
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 ACCOUNT_EMAIL_CONFIRMATION_URL = "{protocol}://{domain}/activate/{uid}/{token}/"
 
+ACCOUNT_ADAPTER = 'accounts.adapter.MyAccountAdapter'
+
 # アプリケーション
 INSTALLED_APPS = [
     'django.contrib.admin',
