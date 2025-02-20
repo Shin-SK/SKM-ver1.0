@@ -20,15 +20,7 @@ DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1,localhost,skm-sk-tokyo-net.herokuapp.com,skm.sk-tokyo.net,skm-sk-tokyo-net-a3a278cbede9.herokuapp.com').split(',')
 
 SITE_DOMAIN = config("SITE_DOMAIN", default="skm.sk-tokyo.net")
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
-ACCOUNT_EMAIL_CONFIRMATION_URL = "{protocol}://{domain}/activate/{uid}/{token}/"
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-USE_X_FORWARDED_HOST = True
-
-ACCOUNT_ADAPTER = 'accounts.adapter.MyAccountAdapter'
-
-
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = config("ACCOUNT_DEFAULT_HTTP_PROTOCOL", default="https")
 
 
 # アプリケーション
