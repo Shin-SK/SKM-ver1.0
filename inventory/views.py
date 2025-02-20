@@ -25,7 +25,7 @@ def edit_inventory(request, item_id=None):
             instance = form.save(commit=False)
             instance._current_user = request.user.username  # 操作者をセット
             instance.save()
-            return redirect('inventory_list')
+            return redirect('inventory:inventory_list')
     else:
         form = InventoryItemForm(instance=item)
     return render(request, 'inventory/edit_inventory.html', {'form': form})
@@ -39,7 +39,7 @@ def delete_inventory(request, item_id):
     item = get_object_or_404(InventoryItem, id=item_id)
     item._current_user = request.user.username  # 操作者をセット
     item.delete()
-    return redirect('inventory_list')
+    return redirect('inventory:inventory_list')
 
 
 import csv
@@ -167,7 +167,7 @@ def import_inventory_csv(request):
                     )
 
             messages.success(request, "CSVデータをインポートしました！（image_filename対応）")
-            return redirect('inventory_list')
+            return redirect('inventory:inventory_list')
     else:
         form = InventoryCSVImportForm()
 
