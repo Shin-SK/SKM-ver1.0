@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import AttendanceRecord
+from .models import AttendanceRecord, AttendanceStatus, DirectStart
 from django.http import HttpResponse
 import csv
 from django.utils.timezone import now
 from django.forms import ModelForm
 from django.contrib.auth.models import User
+import datetime
+from django.utils.dateparse import parse_date  # ← ここを追加！
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+
 
 class AttendanceEditForm(ModelForm):
     class Meta:
@@ -53,11 +58,26 @@ def clock_out(request):
 def attendance_dashboard(request):
     """
     勤怠ダッシュボード
-
-    ログイン中のユーザーの勤怠データを一覧表示します。
+    ログイン中のユーザーの勤怠データを一覧表示
     """
-    records = AttendanceRecord.objects.filter(user=request.user).order_by('-date')
-    return render(request, 'attendance/attendance_list.html', {'records': records})
+    today = now().date()
+
+    # 今日の勤怠記録を取得
+    record = AttendanceRecord.objects.filter(user=request.user, date=today).first()
+
+    # 勤怠ステータスを取得（なければ通常勤務として初期化）
+    if record:
+        attendance_status, created = AttendanceStatus.objects.get_or_create(record=record)
+        status = attendance_status.status
+    else:
+        status = "normal"
+
+    return render(request, 'attendance/attendance_list.html', {
+        'records': AttendanceRecord.objects.filter(user=request.user).order_by('-date'),
+        'attendance_status': status,  # ← フロントエンドに渡す
+    })
+
+
 
 @user_passes_test(lambda u: u.is_staff)
 def admin_attendance_list(request):
@@ -144,3 +164,60 @@ def edit_attendance(request, record_id):
     else:
         form = AttendanceEditForm(instance=record)
     return render(request, 'attendance/edit_attendance.html', {'form': form, 'record': record})
+
+
+@login_required
+def set_direct_start(request):
+    if request.method == "POST":
+        date_str = request.POST.get("date")
+
+        # デバッグ用ログ
+        print(f"受け取った日付（文字列）: {date_str}")
+
+        date = parse_date(date_str)  # 文字列を日付型に変換
+
+        print(f"変換後の日付（Date型）: {date}")  # デバッグ用
+
+        if date:
+            obj, created = DirectStart.objects.update_or_create(
+                user=request.user, date=date, defaults={"is_direct_start": True}
+            )
+            print(f"直行予約を{'作成' if created else '更新'}しました: {obj}")  # デバッグ用
+        else:
+            print("日付が正常に変換されなかったため、保存されませんでした。")
+
+    return redirect('mypage')
+
+
+
+@login_required
+def delete_direct_start(request, direct_start_id):
+    """
+    直行予約を削除する（JSなしで動くように変更）
+    """
+    direct_start = get_object_or_404(DirectStart, id=direct_start_id, user=request.user)
+    direct_start.delete()
+    return redirect('mypage')  # 🔥 削除後はマイページへリダイレクト！
+
+
+
+
+@login_required
+def set_attendance_status(request):
+    """
+    勤怠ステータスを設定（午前休・午後休）
+    """
+    if request.method == "POST":
+        status = request.POST.get("attendance_status")
+        today = now().date()
+
+        record, created = AttendanceRecord.objects.get_or_create(user=request.user, date=today)
+
+        if record:
+            attendance_status, created = AttendanceStatus.objects.get_or_create(record=record)
+            attendance_status.status = status
+            attendance_status.save()
+        else:
+            pass  # ログを記録しないので、何もしない
+
+    return redirect('mypage')

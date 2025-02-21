@@ -1,7 +1,8 @@
+from django.utils.dateparse import parse_date  # ← これを追加！
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.timezone import now
-from attendance.models import AttendanceRecord
+from attendance.models import AttendanceRecord, AttendanceStatus, DirectStart  # ← 追加
 from .models import Employee
 from .forms import EmployeeForm
 import logging
@@ -128,16 +129,27 @@ def mypage(request):
     today = now().date()
     record = AttendanceRecord.objects.filter(user=user, date=today).first()
 
+    # 勤怠ステータスを取得（なければ通常勤務とする）
+    attendance_status = None
+    if record:
+        attendance_status, created = AttendanceStatus.objects.get_or_create(record=record)
+
+    # **直行予約の取得（過去・未来の一覧）**
+    direct_starts = DirectStart.objects.filter(user=user).order_by('date')  # 日付降順で取得
+
     # 通知データを取得（最新5件）
     notifications = Notification.objects.filter(notification_type='全体').order_by('-created_at')[:5]
 
-    # テンプレートに渡す
+    # **テンプレートにデータを渡す**
     return render(request, 'bms/mypage.html', {
         'profile_info': profile_info,
         'employee': employee,
         'record': record,
         'notifications': notifications,
+        'attendance_status': attendance_status.status if attendance_status else "normal",
+        'direct_starts': direct_starts,  # 直行予約の一覧を渡す
     })
+
 
 # 出勤ビュー
 @login_required

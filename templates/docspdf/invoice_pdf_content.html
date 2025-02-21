@@ -35,7 +35,7 @@
                 <div class="box box4">
                     <div class="grid">
                         <div class="label">納期</div>
-                        <div class="text">{{ invoice.closing_date }}</div> <!-- 納期 -->
+                        <div class="text">{{ invoice.deadline }}</div> <!-- 納期 -->
                     </div>
                     <div class="grid">
                         <div class="label">締め日</div>
@@ -97,9 +97,9 @@
             {% for item in items %}
             <tr>
                 <td>{{ item.item_name|default:"&nbsp;" }}</td>
-                <td>{{ item.quantity|default:"&nbsp;" }}</td>
-                <td>{% if item.unit_price %}¥{{ item.unit_price|intcomma }}{% else %}&nbsp;{% endif %}</td>
-                <td>{% if item.subtotal %}¥{{ item.subtotal|intcomma }}{% else %}&nbsp;{% endif %}</td>
+                <td class="text-right">{{ item.quantity|default:"&nbsp;" }}</td>
+                <td class="text-right">{% if item.unit_price %}¥{{ item.unit_price|intcomma }}{% else %}&nbsp;{% endif %}</td>
+                <td class="text-right">{% if item.subtotal %}¥{{ item.subtotal|intcomma }}{% else %}&nbsp;{% endif %}</td>
             </tr>
             {% endfor %}
 
@@ -108,20 +108,20 @@
                 <tr>
                     <td class="blank"></td>
                     <td class="blank"></td>
-                    <td>小計</td>
-                    <td>¥{{ total_amount|intcomma }}</td>
+                    <td class="text-right">小計</td>
+                    <td class="text-right">¥{{ total_amount|intcomma }}</td>
                 </tr>
                 <tr>
                     <td class="blank"></td>
                     <td class="blank"></td>
-                    <td>消費税</td>
-                    <td>¥{{ tax_amount|intcomma }}</td>
+                    <td class="text-right">消費税</td>
+                    <td class="text-right">¥{{ tax_amount|intcomma }}</td>
                 </tr>
                 <tr>
                     <td class="blank"></td>
                     <td class="blank"></td>
-                    <td>合計</td>
-                    <td>¥{{ total_with_tax|intcomma }}</td>
+                    <td class="text-right">合計</td>
+                    <td class="text-right">¥{{ total_with_tax|intcomma }}</td>
                 </tr>
             </tbody>
         </table>

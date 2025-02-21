@@ -4,6 +4,7 @@ $headerHight:50px;
 
 body{
     @include fs(12);
+    position: relative;
 }
 
 a{

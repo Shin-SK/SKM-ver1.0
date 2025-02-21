@@ -10,3 +10,23 @@ class AttendanceRecord(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.date}"
+
+class AttendanceStatus(models.Model):
+    STATUS_CHOICES = [
+        ('normal', '通常勤務'),
+        ('morning_off', '午前休'),
+        ('afternoon_off', '午後休'),
+    ]
+    record = models.OneToOneField(AttendanceRecord, on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='normal')
+
+    def __str__(self):
+        return f"{self.record.user.username} - {self.record.date} - {self.get_status_display()}"
+
+class DirectStart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField()
+    is_direct_start = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.date} - {'直行' if self.is_direct_start else '通常'}"

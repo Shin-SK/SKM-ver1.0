@@ -72,3 +72,13 @@ jQuery(document).ready(function($) {
 
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    flatpickr(".datepicker", {
+        dateFormat: "Y-m-d",  // 保存される形
+        altInput: false,
+        altFormat: "y/m/d",  // 表示する形式 → 25/9/99
+        locale: "ja",
+        allowInput: true,
+    });
+});
+

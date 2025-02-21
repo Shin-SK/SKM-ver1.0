@@ -144,7 +144,17 @@ LOGGING = {
 log_dir = BASE_DIR / 'logs'
 os.makedirs(log_dir, exist_ok=True)
 
+# 言語設定
 LANGUAGE_CODE = 'ja'
+
+# ✅ タイムゾーン設定を追加
+TIME_ZONE = 'Asia/Tokyo'
+
+# タイムゾーンを自動適用
+USE_TZ = True  # True のままでOK（データベースはUTCで管理）
+USE_L10N = True
+USE_I18N = True
+
 
 # メール設定（MailGun api）
 

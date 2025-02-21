@@ -3,8 +3,8 @@ from cloudinary.models import CloudinaryField  # Cloudinaryをインポート
 
 class Customer(models.Model):
     company_name = models.CharField(max_length=255, default="デフォルト会社名", verbose_name="会社名")
-    first_name = models.CharField(max_length=50, null=True, blank=True, verbose_name="名")
-    last_name = models.CharField(max_length=50, null=True, blank=True, verbose_name="姓")
+    first_name = models.CharField(max_length=50, null=True, blank=True, verbose_name="姓")
+    last_name = models.CharField(max_length=50, null=True, blank=True, verbose_name="名")
     email = models.EmailField(unique=True, verbose_name="メールアドレス")
     phone_number = models.CharField(max_length=15, null=True, blank=True, verbose_name="電話番号")
     address = models.TextField(null=True, blank=True, verbose_name="住所")

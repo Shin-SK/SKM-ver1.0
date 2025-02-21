@@ -161,6 +161,7 @@
                 background-color: #f5f5f5;
                 font-weight: bold;
                 font-size: 10px;
+                text-align: center;
             }
         
             td {
@@ -207,5 +208,12 @@
             }
         }
     }
-
+    .text-right{
+        text-align: right !important;
+    }
+    
+    .text-center{
+        text-align: center !important;
+    }
 }
+

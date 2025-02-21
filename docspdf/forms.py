@@ -12,14 +12,15 @@ class QuotationForm(forms.ModelForm):
 
     class Meta:
         model = Quotation
-        fields = ['customer', 'quotation_number', 'project_name', 'contact_name', 'attention_to', 'closing_date', 'payment_due_date']
+        fields = ['customer', 'quotation_number', 'project_name', 'contact_name', 'attention_to', 'deadline', 'closing_date', 'payment_due_date']
         widgets = {
             'quotation_number': forms.TextInput(attrs={'placeholder': '例: Q20230101'}),
             'project_name': forms.TextInput(attrs={'placeholder': '案件名'}),
             'contact_name': forms.TextInput(attrs={'placeholder': '担当者名'}),
             'attention_to': forms.TextInput(attrs={'placeholder': '宛先'}),
-            'closing_date': forms.TextInput(attrs={'placeholder': '例: 毎月25日'}),
-            'payment_due_date': forms.TextInput(attrs={'placeholder': '例: 締め日から30日後'}),
+            'deadline': forms.TextInput(attrs={'class': 'datepicker', 'placeholder': '選択してください'}),
+            'closing_date': forms.TextInput(attrs={'class': 'datepicker', 'placeholder': '選択してください'}),
+            'payment_due_date': forms.TextInput(attrs={'class': 'datepicker', 'placeholder': '選択してください'}),
         }
         labels = {
             'customer': '顧客',
@@ -27,6 +28,7 @@ class QuotationForm(forms.ModelForm):
             'project_name': '案件名',  # ★追加！
             'contact_name': '担当者名',
             'attention_to': '宛先',
+            'deadline': '納期',
             'closing_date': '締め日',
             'payment_due_date': '支払期日',
         }
@@ -60,6 +62,7 @@ class InvoiceForm(forms.ModelForm):
             'project_name',  # ここを追加
             'contact_name',
             'attention_to',
+            'deadline',
             'closing_date',
             'payment_due_date'
         ]
@@ -68,8 +71,9 @@ class InvoiceForm(forms.ModelForm):
             'project_name': forms.TextInput(attrs={'placeholder': '案件名'}),
             'contact_name': forms.TextInput(attrs={'placeholder': '担当者名'}),
             'attention_to': forms.TextInput(attrs={'placeholder': '宛先'}),
-            'closing_date': forms.TextInput(attrs={'placeholder': '例: 毎月25日'}),
-            'payment_due_date': forms.TextInput(attrs={'placeholder': '例: 締め日から30日後'}),
+            'deadline': forms.TextInput(attrs={'class': 'datepicker', 'placeholder': '選択してください'}),
+            'closing_date': forms.TextInput(attrs={'class': 'datepicker', 'placeholder': '選択してください'}),
+            'payment_due_date': forms.TextInput(attrs={'class': 'datepicker', 'placeholder': '選択してください'}),
         }
         labels = {
             'customer': '顧客',
@@ -77,6 +81,7 @@ class InvoiceForm(forms.ModelForm):
             'project_name': '案件名',  # ★追加！
             'contact_name': '担当者名',
             'attention_to': '宛先',
+            'deadline': '納期',
             'closing_date': '締め日',
             'payment_due_date': '支払期日',
         }

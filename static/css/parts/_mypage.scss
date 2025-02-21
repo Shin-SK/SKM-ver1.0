@@ -3,11 +3,13 @@
 .mypage{
     .attendance{
         margin-top: 40px;
-        &__wrap{
-            @include flex();
+        .grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
+        }
+        &__wrap{
             form{
-                flex:1;
                 button{
                     font-weight: bold;
                     border-radius: 16px;
@@ -21,9 +23,6 @@
                 @include fs(20);
             }
             &__wrap{
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
                 .box{
                     display: grid;
                     grid-template-columns: auto 1fr;
@@ -63,4 +62,56 @@
             }
         }//today
     }//attendance
+
+    .status{
+        margin-top: 40px;
+        h2{
+            text-align: center;
+            font-weight: bold;
+            margin: 16px;
+        }
+        .area{
+            @include flex();
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+            margin: auto;
+        }
+        .list{
+            ul{
+                width: fit-content;
+                padding: 16px;
+                background:white;
+                border-radius: 16px;
+                width: 100%;
+                li{
+                    border-bottom: 1px gray dotted;
+                    &:last-of-type{
+                        border: unset;
+                    }
+                    .wrap{
+                        display: grid;
+                        grid-template-columns: 150px auto;
+                        align-items: center;
+                        justify-content: start;
+                        width: fit-content;
+                        margin: auto;
+                        button{
+                            background-color: unset;
+                            color: black;
+                            border-radius: unset;
+                            margin: unset;
+                            padding: unset;
+                        }
+                    }
+                    .else{
+                        .text{
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }

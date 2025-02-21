@@ -417,6 +417,7 @@ body {
 
 body {
   font-size: clamp(1.2rem, 1.1346938776rem + 0.2040816327vw, 1.4rem);
+  position: relative;
 }
 
 a {
@@ -720,14 +721,10 @@ body {
 .mypage .attendance {
   margin-top: 40px;
 }
-.mypage .attendance__wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.mypage .attendance .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
-}
-.mypage .attendance__wrap form {
-  flex: 1;
 }
 .mypage .attendance__wrap form button {
   font-weight: bold;
@@ -739,11 +736,6 @@ body {
 .mypage .attendance .today .title {
   font-weight: bold;
   font-size: clamp(2rem, 1.9346938776rem + 0.2040816327vw, 2.2rem);
-}
-.mypage .attendance .today__wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
 }
 .mypage .attendance .today__wrap .box {
   display: grid;
@@ -779,6 +771,56 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.mypage .status {
+  margin-top: 40px;
+}
+.mypage .status h2 {
+  text-align: center;
+  font-weight: bold;
+  margin: 16px;
+}
+.mypage .status .area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin: auto;
+}
+.mypage .status .list ul {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 16px;
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+}
+.mypage .status .list ul li {
+  border-bottom: 1px gray dotted;
+}
+.mypage .status .list ul li:last-of-type {
+  border: unset;
+}
+.mypage .status .list ul li .wrap {
+  display: grid;
+  grid-template-columns: 150px auto;
+  align-items: center;
+  justify-content: start;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+}
+.mypage .status .list ul li .wrap button {
+  background-color: unset;
+  color: black;
+  border-radius: unset;
+  margin: unset;
+  padding: unset;
+}
+.mypage .status .list ul li .else .text {
+  text-align: center;
 }
 
 /* 除算math.divを使うのに必要な記述 */
@@ -1520,6 +1562,7 @@ body {
   background-color: #f5f5f5;
   font-weight: bold;
   font-size: 10px;
+  text-align: center;
 }
 .printPDF .block2 table td {
   font-size: 12px;
@@ -1555,6 +1598,12 @@ body {
 }
 .printPDF footer .block3 .box1 .wrap .text {
   text-align: center;
+}
+.printPDF .text-right {
+  text-align: right !important;
+}
+.printPDF .text-center {
+  text-align: center !important;
 }
 
 .login {

@@ -286,6 +286,7 @@ body {
   background-color: #f5f5f5;
   font-weight: bold;
   font-size: 10px;
+  text-align: center;
 }
 .printPDF .block2 table td {
   font-size: 12px;
@@ -321,4 +322,10 @@ body {
 }
 .printPDF footer .block3 .box1 .wrap .text {
   text-align: center;
+}
+.printPDF .text-right {
+  text-align: right !important;
+}
+.printPDF .text-center {
+  text-align: center !important;
 }/*# sourceMappingURL=pdf_style.css.map */
