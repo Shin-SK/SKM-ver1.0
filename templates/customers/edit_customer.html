@@ -10,28 +10,32 @@
         
         <div class="form__wrap">
             <div class="box">
-                <label for="first_name">姓</label>
-                <input type="text" id="first_name" name="first_name" value="{{ form.first_name.value|default:'' }}">
+                <label for="id_company_prefix">会社種別</label>
+                {{ form.company_prefix }}
+            </div>
+            <div class="box">
+                <label for="id_company_suffix">会社名</label>
+                {{ form.company_suffix }}
             </div>
 
             <div class="box">
-                <label for="last_name">名</label>
-                <input type="text" id="last_name" name="last_name" value="{{ form.last_name.value|default:'' }}">
+                <label for="id_first_name">姓</label>
+                {{ form.first_name }}
             </div>
 
             <div class="box">
-                <label for="email">メールアドレス</label>
-                <input type="email" id="email" name="email" value="{{ form.email.value|default:'' }}">
+                <label for="id_last_name">名</label>
+                {{ form.last_name }}
             </div>
 
             <div class="box">
-                <label for="phone_number">電話番号</label>
-                <input type="text" id="phone_number" name="phone_number" value="{{ form.phone_number.value|default:'' }}">
+                <label for="id_email">メールアドレス</label>
+                {{ form.email }}
             </div>
 
             <div class="box">
-                <label for="company_name">会社名</label>
-                <input type="text" id="company_name" name="company_name" value="{{ form.company_name.value|default:'' }}">
+                <label for="id_phone_number">電話番号</label>
+                {{ form.phone_number }}
             </div>
 
             <!-- 郵便番号フィールド（AjaxZip3用） -->
@@ -41,8 +45,8 @@
             </div>
 
             <div class="box">
-                <label for="address">住所</label>
-                <textarea id="address" name="address" rows="3" placeholder="自動入力された先を記入してください">{{ form.address.value|default:'' }}</textarea>
+                <label for="id_address">住所</label>
+                {{ form.address }}
             </div>
         </div>
 
@@ -51,5 +55,4 @@
 
     <a href="{% url 'customer_list' %}">戻る</a>
 </div>
-
 {% endblock %}
